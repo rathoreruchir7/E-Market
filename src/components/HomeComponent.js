@@ -3,7 +3,6 @@ import {Switch, Route,Redirect} from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle} from 'reactstrap';
 import { Loading } from './LoadingComponent';
-import {baseUrl} from '../shared/baseUrl';
 import {FadeTransform} from 'react-animation-components';
 import { render } from '@testing-library/react';
 import {firestore} from '../firebase/firebase';

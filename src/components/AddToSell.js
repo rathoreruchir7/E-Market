@@ -4,7 +4,6 @@ import {Card, CardImg, CardText, CardImgOverlay, CardBody, CardTitle,Breadcrumb,
 import {Link,withRouter} from 'react-router-dom';
 import {LocalForm,Control,Errors} from 'react-redux-form';
 import { Loading } from './LoadingComponent';
-import {baseUrl} from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { auth,firestore,storage } from '../firebase/firebase';
 
@@ -97,14 +96,13 @@ class AddToSell extends Component{
             image: this.state.url.toString(),
             seller: auth.currentUser.email.toString(),
             
-          
-            })
+             })
             .then(docRef => {
                 console.log(docRef);
-              event.preventDefault();
+            
             });
 
-           event.preventDefault();
+           this.props.history.push('/success')
     }
     else{
       window.open('/error')
@@ -120,7 +118,7 @@ class AddToSell extends Component{
 
         return (
             <Form onSubmit={this.handleSubmit}>
-            <FormText><h1>Want to Sell, Add the details and image of the item</h1></FormText><br />
+            <FormText><br /><h1>Want to Sell, Add the details and image of the item</h1></FormText><br /><hr />
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="name">Name</Label>
               <Input type="text" id="name" name="name" 
@@ -186,4 +184,4 @@ class AddToSell extends Component{
     }
 }
 
-export default AddToSell;
+export default withRouter(AddToSell);

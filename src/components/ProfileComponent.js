@@ -5,7 +5,6 @@ import Image from 'react-bootstrap/Image'
 import {Card, CardImg, CardText,Col, CardImgOverlay,CardBody, CardTitle,Breadcrumb,BreadcrumbItem, Button,ModalHeader, ModalBody,Modal} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import {baseUrl} from '../shared/baseUrl';
 import { storage,firestore,auth } from '../firebase/firebase';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 

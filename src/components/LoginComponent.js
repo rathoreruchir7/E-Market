@@ -87,7 +87,7 @@ class Login extends Component{
                innerRef = {(input) => this.remember=input}/>Remember Me</Label>
           </FormGroup>
           <Button type="submit" value="submit" color="primary">Login</Button>
-          {/* <Button type="submit" value="submit" color="warning">Google Sign In</Button> */}
+      
         </Form>
          
         );

@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {Nav,NavItem,Navbar,NavbarBrand,NavbarToggler,Collapse,Jumbotron, ModalHeader, ModalBody,Button,Modal, FormGroup,Form,Label,Input, FormText} from 'reactstrap';
-import { firebaseConfig } from '../firebase/config';
 import { firestore,fireauth,auth,provider} from '../firebase/firebase';
-import { Link, useHistory } from "react-router-dom";
-import { withRouter } from 'react-router-dom' 
-import firebase from "firebase/app";
+import { withRouter, Link } from 'react-router-dom' 
+
 
 
  

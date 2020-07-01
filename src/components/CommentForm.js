@@ -39,8 +39,8 @@ class CommentForm extends Component{
     }
     handleSubmit(values)
     {
-        alert('Current State is: ' + JSON.stringify(values));
-    }
+        
+          }
     validate(name)
     {
         const errors = {
