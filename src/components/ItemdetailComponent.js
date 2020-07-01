@@ -29,11 +29,17 @@ class CommentForm extends Component{
     }
    
     handleSubmit(values)
-    {alert(JSON.stringify(values));   
+    {   
+        if(auth.currentUser != null) {
+         alert(JSON.stringify(values));   
          this.toggleModal();
          this.props.postComment(this.props.itemId, values.rating, values.comment);
-         
     }
+     else
+     {
+         window.open('/error');
+     }
+ }
     
 
     toggleModal() {
@@ -171,8 +177,9 @@ class CommentForm extends Component{
             newcart.push(item);
             console.log(newcart);
             if(!auth.currentUser)
-           { console.log('user not logged in');
-        }     
+           { 
+              window.open('/error');
+         }     
             else{
                
              firestore.collection('user')
@@ -188,14 +195,14 @@ class CommentForm extends Component{
             }
         
            
-        }
+     }
 
         removeFromCart(item1)
         {
             console.log('removing');
             
            if(!auth.currentUser)
-           { console.log('user not logged in');
+           { window.open('/error');
                }     
             else{
                 console.log(this.state.cart);

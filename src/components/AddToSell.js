@@ -30,6 +30,7 @@ class AddToSell extends Component{
     }
 
     uploadImage() {
+        if(auth.currentUser != null){
         console.log(this.state.image);
 
         const {image} = this.state;
@@ -55,6 +56,10 @@ class AddToSell extends Component{
             })
         });
     }
+    else{
+        window.open('/error');
+    }
+}
 
     handleChange1 (event) {
         console.log(this.state.image);
@@ -77,22 +82,33 @@ class AddToSell extends Component{
         });
  }
     handleSubmit(event) {
-        console.log(this.state);
-        firestore.collection('items')
-        .add({
-           name: this.state.name.toString(),
-           price: this.state.price.toString(),
-           category: this.state.category.toString(),
-           label: this.state.label.toString(),
-           featured: this.state.featured,
-           description: this.state.description.toString(),
-           seller: auth.currentUser.email.toString()
-        })
-        .then(docRef => {
-            console.log(docRef);
-        });
+        if(auth.currentUser!=null){
+            console.log(this.state);
+            firestore.collection('items')
+            .add({
+            name: this.state.name.toString(),
+            price: this.state.price.toString(),
+            category: this.state.category.toString(),
+            label: this.state.label.toString(),
+            featured: this.state.featured,
+            description: this.state.description.toString(),
+            seller: auth.currentUser.email.toString()
+            })
+            .then(docRef => {
+                console.log(docRef);
+            });
 
-        event.preventDefault();
+      
+    }
+    else{
+        window.open('/error');
+    }
+
+}
+
+    componentDidMount() {
+        if(auth.currentUser == null)
+           window.open('/error');
     }
     render() {
 

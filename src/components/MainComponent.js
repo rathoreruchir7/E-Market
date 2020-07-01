@@ -5,6 +5,7 @@ import Header from './Header';
 import Home from './HomeComponent';
 import imageUpload from './imageupload';
 import Footer from './FooterComponent';
+import Error from './ErrorComponent';
 import Itemdetail from './ItemdetailComponent';
 import Login from './LoginComponent';
 import SignUp from './SignUpComponent';
@@ -132,7 +133,7 @@ class Main extends Component {
               <Route path='/signup' component={() => <SignUp user = {this.state.user}  />  } />
               <Route path='/home' component={HomePage} />
               <Route path='/login' component={() => <Login fetchUser={this.props.fetchUser} />} />
-              <Route path ='/profile' component={ProfilePage} />
+              <Route path = '/profile' component={ProfilePage} />
               <Route exact path='/menu' component={() => <Menu items={this.props.items} />} />
               <Route path = '/menu/:itemId' component = {ItemWithId} />
              
@@ -140,8 +141,9 @@ class Main extends Component {
               <Route exact path = '/aboutus' component  = {AboutUs} />
               <Route exact path = '/sellItem' component  = {AddToSell} />
 
-              <Route exact path = '/upload' component  = {imageUpload} />
-              <Redirect to = '/home' />
+              
+              <Route exact path = '/error' component  = {Error} />
+              <Redirect to = '/home'/>
               </Switch>
            </div>
            </CSSTransition>

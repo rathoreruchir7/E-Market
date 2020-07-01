@@ -117,6 +117,11 @@ class Profile extends Component{
     }
    componentDidMount()
    {
+       if(auth.currentUser == null)
+        {
+            window.open('/error');
+        }
+        else{
         console.log(this.props.user);
         firestore.collection('user').get()
         .then(snapshot => {
@@ -149,7 +154,7 @@ class Profile extends Component{
                                                     
              
      }
-
+    }
      toggleModal() {
          this.setState({ isModalOpen: !this.state.isModalOpen});
      }
