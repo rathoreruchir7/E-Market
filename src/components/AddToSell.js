@@ -124,7 +124,7 @@ class AddToSell extends Component{
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="name">Name</Label>
               <Input type="text" id="name" name="name" 
-               placeholder='Iphone 11'
+               placeholder='eg. Iphone 11'
                value={this.state.name}
                onChange={this.handleChange} />
             </FormGroup>
@@ -132,7 +132,7 @@ class AddToSell extends Component{
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="category">Category</Label>
               <Input type="text" id="category" name="category" 
-               placeholder='Smartphone'
+               placeholder='eg. Smartphone'
                value={this.state.category}
                onChange={this.handleChange} />
             </FormGroup>
@@ -140,7 +140,7 @@ class AddToSell extends Component{
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="label">Label</Label>
               <Input type="label" id="label" name="label" 
-               placeholder='New'
+               placeholder='eg. New'
                value={this.state.label}
                onChange={this.handleChange} />
             </FormGroup>
