@@ -95,16 +95,16 @@ class AddToSell extends Component{
             featured: this.state.featured,
             description: this.state.description.toString(),
             image: this.state.url.toString(),
-            seller: auth.currentUser.email.toString()
+            seller: auth.currentUser.email.toString(),
             
           
             })
             .then(docRef => {
                 console.log(docRef);
-              window.open('/success');
+              event.preventDefault();
             });
 
-           
+           event.preventDefault();
     }
     else{
       window.open('/error')
@@ -174,7 +174,7 @@ class AddToSell extends Component{
               <Input type="file" id="image" name="image"
               onChange={this.handleChange1}/>
               <Button onClick={this.uploadImage} color={this.state.url ? 'success' : 'warning'}>{this.state.url ? 'Uploaded' : 'Upload'}</Button>
-              <div>Wait for the Upload of image of product before submitting the product. </div>
+              <div>Wait for the image to upload before submitting the product. </div>
             </FormGroup>
            
             <FormGroup className='col-12 col-md-4'>

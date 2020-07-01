@@ -164,6 +164,8 @@ class Profile extends Component{
         console.log(this.state.image);
 
         const {image} = this.state;
+        if(image != '')
+        {
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on('state_changed', 
             (snapshot) => {
@@ -188,6 +190,10 @@ class Profile extends Component{
             })
         });
     }
+   else{
+       this.setState({ profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'})
+   }
+}
 
 
      handleChange (event) {
@@ -195,6 +201,9 @@ class Profile extends Component{
             if (event.target.files[0]) {
             const image = event.target.files[0];
             this.setState(() => ({image}));
+             }
+             else{
+                 this.setState({image: ''});
              }
         console.log(this.state.image);
        }

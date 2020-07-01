@@ -58,7 +58,7 @@ class Header extends Component{
     auth.signInWithEmailAndPassword(email, password)
     .catch(function(error) {
       console.log('cant log in');
-      this.setState({ validCredential: false});
+      window.open('/error');
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorMessage);
@@ -74,19 +74,20 @@ class Header extends Component{
  var token = result.credential.accessToken;
  var user = result.user;
  console.log(result);
-
+ this.props.history.push('/home');
 }).catch(function(error) {
  
  var errorCode = error.code;
  var errorMessage = error.message;
  var email = error.email;
  var credential = error.credential;
+ window.open('/error');
  // ...
 });
 this.setState({
   isModalOpen: !this.state.isModalOpen
 });
-
+this.props.history.push('/home');
 }
 
   handleLogout()

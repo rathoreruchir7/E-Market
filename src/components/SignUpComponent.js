@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Nav,NavItem,Navbar,NavbarBrand,NavbarToggler,Collapse,Jumbotron, ModalHeader, ModalBody,Button,Modal, FormGroup,Form,Label,Input} from 'reactstrap';
+import {Nav,NavItem,Navbar,NavbarBrand,NavbarToggler,Collapse,Jumbotron, ModalHeader, ModalBody,Button,Modal, FormGroup,Form,Label,Input, FormText} from 'reactstrap';
 import { firebaseConfig } from '../firebase/config';
-import { firestore,fireauth,auth} from '../firebase/firebase';
+import { firestore,fireauth,auth,provider} from '../firebase/firebase';
 import { Link, useHistory } from "react-router-dom";
 import { withRouter } from 'react-router-dom' 
 import firebase from "firebase/app";
@@ -24,6 +24,7 @@ class SignUp extends Component{
         this.handleSignUp = this.handleSignUp.bind(this);
         this.nextFunc = this.nextFunc.bind(this);
         this.resetState = this.resetState.bind(this);
+        this. googleSignInHandle = this.googleSignInHandle.bind(this);
     }
  
     handleChange(event) {
@@ -45,7 +46,33 @@ class SignUp extends Component{
     console.log(this.props.user);
      }
 
-
+     googleSignInHandle(){
+        
+      auth.signInWithPopup(provider).then(function(result) {
+     var token = result.credential.accessToken;
+     var user = result.user;
+     console.log(result);
+     firestore.collection('user')
+     .doc(auth.currentUser.email.toString())
+     .set({
+       name: auth.currentUser.displayName,
+       username: auth.currentUser.email,
+       email: auth.currentUser.email,
+       cart: [],
+       profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
+     })
+    
+    }).catch(function(error) {
+     
+     var errorCode = error.code;
+     var errorMessage = error.message;
+     var email = error.email;
+     var credential = error.credential;
+     // ...
+    });
+  
+    this.props.history.push('/home');
+    }
   handleSignUp(event) {
 
         console.log('i am in sign up');
@@ -80,6 +107,7 @@ class SignUp extends Component{
         const image = event.target.files[0];
         this.setState(() => ({image}));
       }
+
      }
      nextFunc()
      {
@@ -146,8 +174,8 @@ class SignUp extends Component{
           </FormGroup>
 
 
-          <Button type="submit" value="submit" color="primary">Sign Up</Button>
-          {/* <Button type="submit" value="submit" color="warning">Google Sign In</Button> */}
+          <Button type="submit" value="submit" color="primary">Sign Up</Button>{' or '}
+        <Button type="button" value="googleButton1" color="danger" onClick={this.googleSignInHandle}>Sign In with Google</Button>
         </Form>
          
         );
