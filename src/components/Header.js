@@ -1,0 +1,179 @@
+import React, {Component} from 'react';
+import {Nav,NavItem,Navbar,NavbarBrand,NavbarToggler,Collapse,Jumbotron, ModalHeader, ModalBody,Button,Modal, FormGroup,Form,Label,Input} from 'reactstrap';
+import {Switch, Route,Redirect,withRouter, Link} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { auth } from '../firebase/firebase';
+
+class Header extends Component{
+	constructor(props) {
+        super(props);
+    
+        this.toggleNav = this.toggleNav.bind(this);
+        this.state = {
+          isNavOpen: false,
+          isModalOpen: false,
+          isModalOpen1: false,
+          validCredential: true
+          
+        };
+        this.toggleNav = this.toggleNav.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.toggleModal1 = this.toggleModal1.bind(this);
+        this.handleLogin=this.handleLogin.bind(this);
+        this.handleLogout=this.handleLogout.bind(this);
+      }
+
+   
+	toggleNav()
+	{
+		this.setState({isNavOpen : !this.state.isNavOpen});
+  }
+  
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen
+    });
+  }
+
+  toggleModal1() {
+    this.setState({
+      isModalOpen1: !this.state.isModalOpen1
+    });
+  }
+
+  handleLogin(event)
+  {
+    
+    this.toggleModal();
+    alert("Username: " + this.username.value + " Password: " + this.password.value + " Remember: " + this.remember.checked);
+    this.setState({ validCredential: true});
+    var email= this.username.value.toString();
+    console.log(typeof(email));
+  
+    var password = this.password.value.toString();
+    console.log(password);
+    console.log(typeof(password));
+  
+    auth.signInWithEmailAndPassword(email, password)
+    .catch(function(error) {
+      console.log('cant log in');
+      this.setState({ validCredential: false});
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+    });
+    console.log(auth.currentUser);
+    event.preventDefault();
+    // this.props.history.push('/home');
+ }
+
+  handleLogout()
+  {
+    auth.signOut().then(function() {
+      console.log('sign out user completed')
+    }).catch(function(error) {
+      console.log('error in sign out');
+    });
+    this.props.history.push('/home');
+  }
+
+	render()
+	{
+		return(
+			
+		  <React.Fragment>	
+			<Navbar dark expand="md">
+                    <div className="container">
+                        <NavbarToggler onClick={this.toggleNav} />
+                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="30" width="41" alt='E-Market' /></NavbarBrand>
+                        <Collapse isOpen={this.state.isNavOpen} navbar>
+                            <Nav navbar>
+                            <NavItem>
+                                <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg"></span> About Us</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to= { auth.currentUser ? '/sellItem' : ''}><span className={ auth.currentUser ? "fa fa-plus fa-lg" : ''}></span>{ auth.currentUser ? 'Add To Sell' : ''}</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to= { auth.currentUser ? '/profile' : ''}><span className={ auth.currentUser ? "fa fa-user fa-lg" : ''}></span>{ auth.currentUser ? 'Profile' : ''}</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to= { auth.currentUser ? '' : '/signup'}><span className={ auth.currentUser ? "" : 'fa fa-sign-in fa-lg'}></span>{ auth.currentUser ? '' : 'Sign Up'}</NavLink>
+                            </NavItem>
+                            </Nav>
+                            <Nav className="" navbar>
+                              <NavItem>
+                                <Button outline onClick={auth.currentUser? this.toggleModal1 :this.toggleModal}>
+                                    <span className={ auth.currentUser? "fa fa-sign-out fa-lg" : "fa fa-sign-in  fa-lg"}></span>{auth.currentUser ? 'Logut' : 'Login'}
+                                </Button>
+                              </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </div>
+                </Navbar>
+
+
+			<Jumbotron>
+			  <div className="container">
+			    <div className="row row-header">
+			      <div className="col-12 col-sm-6">
+			      	<h1>E-Market</h1>
+                       <p>Born to shop. Forced to work.</p>
+			      </div>
+			    </div>
+			  </div>
+
+			</Jumbotron>
+
+      <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+        <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+        <ModalBody>
+          <Form onSubmit={this.handleLogin}>
+            <FormGroup>
+              <Label htmlFor="username">Username</Label>
+              <Input type="text" id="username" name="username" 
+               innerRef = {(input) => this.username=input}/>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="password">Password</Label>
+              <Input type="password" id="password" name="password"
+              innerRef = {(input) => this.password=input}/>
+            </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" name="remember" 
+                 innerRef = {(input) => this.remember=input}/>Remember Me</Label>
+            </FormGroup>
+            <Button type="submit" value="submit" color="primary">Login</Button>
+           </Form>
+          <Link > </Link>
+        </ModalBody>
+      </Modal>
+
+      <Modal isOpen={this.state.isModalOpen1} toggle={this.toggleModal1}>
+        <ModalHeader toggle={this.toggleModal1}>Are you sure , you want to logout</ModalHeader>
+        <ModalBody>
+          <Form onSubmit={this.handleLogout}>
+            
+           
+            <Button type="submit" value="submit" color="primary">Logout</Button>
+          </Form>
+        </ModalBody>
+      </Modal>
+			</React.Fragment>
+			
+			);
+	}
+}
+
+export default withRouter(Header);
+
