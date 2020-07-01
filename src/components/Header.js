@@ -45,7 +45,7 @@ class Header extends Component{
   {
     
     this.toggleModal();
-    alert("Username: " + this.username.value + " Password: " + this.password.value + " Remember: " + this.remember.checked);
+    // alert("Username: " + this.username.value + " Password: " + this.password.value + " Remember: " + this.remember.checked);
     this.setState({ validCredential: true});
     var email= this.username.value.toString();
     console.log(typeof(email));

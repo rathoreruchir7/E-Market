@@ -16,8 +16,7 @@ export const ConfigureStore = () => {
         combineReducers({
             items: Items,
             comments: Comments,
-            promotions: Promotions,
-            leaders: Leaders,
+        
             user: User,
 
             ...createForms({

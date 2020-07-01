@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Card, CardImg, CardText, CardImgOverlay, CardBody, CardTitle,Breadcrumb,BreadcrumbItem,
-	Button, Modal, ModalHeader, ModalBody, ModalFooter,Form,FormGroup,FormFeedback,Label,Input,Col,Row} from 'reactstrap';
+	Button, Modal, ModalHeader, ModalBody, ModalFooter,Form,FormGroup,FormFeedback,Label,Input,Col,Row, FormText} from 'reactstrap';
 import {Link,withRouter} from 'react-router-dom';
 import {LocalForm,Control,Errors} from 'react-redux-form';
 import { Loading } from './LoadingComponent';
@@ -92,7 +92,7 @@ class AddToSell extends Component{
             label: this.state.label.toString(),
             featured: this.state.featured,
             description: this.state.description.toString(),
-            seller: auth.currentUser.email.toString()
+            image: this.state.url
             })
             .then(docRef => {
                 console.log(docRef);
@@ -114,7 +114,7 @@ class AddToSell extends Component{
 
         return (
             <Form onSubmit={this.handleSubmit}>
-
+            <FormText><h1>Want to Sell, Add the details and image of the item</h1></FormText><br />
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="name">Name</Label>
               <Input type="text" id="name" name="name" 
@@ -167,7 +167,7 @@ class AddToSell extends Component{
               <Label htmlFor="image">Image</Label>
               <Input type="file" id="image" name="image"
               onChange={this.handleChange1}/>
-              <Button onClick={this.uploadImage} color={this.state.url ? 'success' : 'secondary'}>{this.state.url ? 'Uploaded' : 'Upload'}</Button>
+              <Button onClick={this.uploadImage} color={this.state.url ? 'success' : 'warning'}>{this.state.url ? 'Uploaded' : 'Upload'}</Button>
               <div>Upload the image of product before submitting the form</div>
             </FormGroup>
            

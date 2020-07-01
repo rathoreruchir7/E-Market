@@ -260,13 +260,13 @@ class Profile extends Component{
                                 <Media  alt={this.state.name} />
                             </Media>    
                             <Media body className="ml-5">
-                                <Media heading>{this.state.name}</Media>
-                                 <p><h6>Username</h6>{this.state.username}</p>
+                                <Media heading>{this.state.name}</Media><br />
+                                 <p><h6>Username</h6>{this.state.username}</p><br />
                                 <p><h6>Email</h6>{this.state.email}</p>
                             </Media>    
                        </Media>
                         </div>
-              
+                        <hr />
 
                 <div className='row'>
                     <div className='col-12 col-md-4'>
