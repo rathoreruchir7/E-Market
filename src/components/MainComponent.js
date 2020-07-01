@@ -12,13 +12,14 @@ import SignUp from './SignUpComponent';
 import Profile from './ProfileComponent';
 import AddToSell from './AddToSell';
 import Cart from './CartComponent';
+import Success from './Success';
 import {Switch, Route,Redirect,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getFirebase} from 'react-redux-firebase';
 import {getFirestore} from 'redux-firestore';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
-import { postComment,postFeedback,fetchItems,fetchComments,fetchUser } from '../redux/ActionCreators';
+import { postComment,postFeedback,fetchItems,fetchComments,fetchPromos, fetchLeaders,fetchUser } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import firebase from 'firebase';
@@ -31,7 +32,8 @@ const mapDispatchToProps = dispatch => ({
   fetchUser: (username) => { dispatch(fetchUser(username))},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
   fetchComments: () => { dispatch(fetchComments())},
- 
+  fetchPromos: () => { dispatch(fetchPromos())},
+  fetchLeaders: () => { dispatch(fetchLeaders())}
 
 
 });
@@ -42,6 +44,8 @@ const mapStateToProps=state=>{
   return{
     items:state.items,
     comments:state.comments,
+    promotions:state.promotions,
+    leaders:state.leaders,
     user: state.user
    };
 }
@@ -56,7 +60,9 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchItems();
     this.props.fetchComments();
-  
+    // this.props.fetchPromos();
+    // this.props.fetchUser();
+    // this.props.fetchLeaders();
     console.log('i am in');
     auth.onAuthStateChanged( user => {
       if (user) {
@@ -99,7 +105,8 @@ class Main extends Component {
   const AboutUs = () =>
   {
     return (
-        <About  />
+        <About 
+       />
       );
   };
   
@@ -108,7 +115,10 @@ class Main extends Component {
   { 
     
     return (
-        <Profile  />
+        <Profile  
+        
+
+       />
       );
   
   }
@@ -134,6 +144,7 @@ class Main extends Component {
 
               
               <Route exact path = '/error' component  = {Error} />
+              <Route exact path = '/success' component  = {Success} />
               <Redirect to = '/home'/>
               </Switch>
            </div>

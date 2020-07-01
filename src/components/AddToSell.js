@@ -17,7 +17,7 @@ class AddToSell extends Component{
             name: "",
             image: "",
             category: "",
-            label: "",
+            label: "new",
             price: "",
             featured: false,
             description: "",
@@ -101,13 +101,13 @@ class AddToSell extends Component{
             })
             .then(docRef => {
                 console.log(docRef);
-               event.preventDefault();
+              window.open('/success');
             });
 
-            event.preventDefault();
+           
     }
     else{
-        event.preventDefault();
+      window.open('/error')
     }
 
 }
