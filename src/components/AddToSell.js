@@ -84,6 +84,7 @@ class AddToSell extends Component{
     handleSubmit(event) {
     
         if(auth.currentUser!=null){
+          
             console.log(this.state);
             firestore.collection('items')
             .add({
@@ -93,16 +94,20 @@ class AddToSell extends Component{
             label: this.state.label.toString(),
             featured: this.state.featured,
             description: this.state.description.toString(),
+            image: this.state.url.toString(),
+            seller: auth.currentUser.email.toString()
+            
           
             })
             .then(docRef => {
                 console.log(docRef);
+               event.preventDefault();
             });
 
-      event.preventDefault();
+            event.preventDefault();
     }
     else{
-        window.open('/error');
+        event.preventDefault();
     }
 
 }
