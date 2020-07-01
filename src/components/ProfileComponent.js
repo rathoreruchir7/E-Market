@@ -123,6 +123,7 @@ class Profile extends Component{
         }
         else{
         console.log(this.props.user);
+        this.setState({ name: auth.currentUser.displayName, username: auth.currentUser.email, email: auth.currentUser.email})
         firestore.collection('user').get()
         .then(snapshot => {
             
@@ -238,7 +239,7 @@ class Profile extends Component{
                         <Media tag="">
                             <Media left middle>
                                 <Image style={{width: '200px', height: '200px'}} src={this.state.profileImageUrl}  rounded />
-                                <Media object alt={this.state.username} />
+                                
                             </Media>    
                             <Media body className="ml-5">
                                 <Media heading>{this.state.name}</Media>

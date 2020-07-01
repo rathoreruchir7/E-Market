@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Nav,NavItem,Navbar,NavbarBrand,NavbarToggler,Collapse,Jumbotron, ModalHeader, ModalBody,Button,Modal, FormGroup,Form,Label,Input} from 'reactstrap';
 import {Switch, Route,Redirect,withRouter, Link} from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { auth } from '../firebase/firebase';
+import { auth,provider, signInWithGoogle } from '../firebase/firebase';
 
 class Header extends Component{
 	constructor(props) {
@@ -21,6 +21,7 @@ class Header extends Component{
         this.toggleModal1 = this.toggleModal1.bind(this);
         this.handleLogin=this.handleLogin.bind(this);
         this.handleLogout=this.handleLogout.bind(this);
+        this.googleSignInHandle=this.googleSignInHandle.bind(this);
       }
 
    
@@ -66,6 +67,27 @@ class Header extends Component{
     event.preventDefault();
     // this.props.history.push('/home');
  }
+
+ googleSignInHandle(){
+        
+  auth.signInWithPopup(provider).then(function(result) {
+ var token = result.credential.accessToken;
+ var user = result.user;
+ console.log(result);
+
+}).catch(function(error) {
+ 
+ var errorCode = error.code;
+ var errorMessage = error.message;
+ var email = error.email;
+ var credential = error.credential;
+ // ...
+});
+this.setState({
+  isModalOpen: !this.state.isModalOpen
+});
+
+}
 
   handleLogout()
   {
@@ -153,7 +175,10 @@ class Header extends Component{
                 <Input type="checkbox" name="remember" 
                  innerRef = {(input) => this.remember=input}/>Remember Me</Label>
             </FormGroup>
-            <Button type="submit" value="submit" color="primary">Login</Button>
+            <FormGroup>
+              <Button type="submit" value="submit" color="primary">Login</Button>{"   "}
+              <Button type="button" value="googleButton1" color="danger" onClick={this.googleSignInHandle}>Google Sign In</Button>
+            </FormGroup>
            </Form>
           <Link > </Link>
         </ModalBody>
@@ -166,6 +191,7 @@ class Header extends Component{
             
            
             <Button type="submit" value="submit" color="primary">Logout</Button>
+            
           </Form>
         </ModalBody>
       </Modal>
