@@ -174,7 +174,7 @@ class AddToSell extends Component{
               <Input type="file" id="image" name="image"
               onChange={this.handleChange1}/>
               <Button onClick={this.uploadImage} color={this.state.url ? 'success' : 'warning'}>{this.state.url ? 'Uploaded' : 'Upload'}</Button>
-              <div>Upload the image of product before submitting the form</div>
+              <div>Wait for the Upload of image of product before submitting the product. </div>
             </FormGroup>
            
             <FormGroup className='col-12 col-md-4'>
