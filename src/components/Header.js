@@ -176,8 +176,8 @@ this.setState({
                  innerRef = {(input) => this.remember=input}/>Remember Me</Label>
             </FormGroup>
             <FormGroup>
-              <Button type="submit" value="submit" color="primary">Login</Button>{"   "}
-              <Button type="button" value="googleButton1" color="danger" onClick={this.googleSignInHandle}>Google Sign In</Button>
+              <Button type="submit" value="submit" color="primary">Login</Button>{"    "}
+              <Button type="button" value="googleButton1" color="danger" onClick={this.googleSignInHandle}>Sign In with Google</Button>
             </FormGroup>
            </Form>
           <Link > </Link>
