@@ -141,7 +141,7 @@ class Main extends Component {
               <Route exact path = '/sellItem' component  = {AddToSell} />
 
               <Route exact path = '/upload' component  = {imageUpload} />
-
+              <Redirect to = '/home' />
               </Switch>
            </div>
            </CSSTransition>
