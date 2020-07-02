@@ -11,7 +11,8 @@ import Profile from './ProfileComponent';
 import AddToSell from './AddToSell';
 import Cart from './CartComponent';
 import Success from './SuccessComponent';
-import SignUpSuccess from './signUpSuccess'
+import SignUpSuccess from './signUpSuccess';
+import NotFound from './NotFoundComponent';
 import {Switch, Route,Redirect,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Contact from './ContactComponent';
@@ -128,6 +129,7 @@ class Main extends Component {
               <Route exact path = '/error' component  = {Error} />
               <Route exact path = '/success' component  = {Success} />
               <Route exact path = '/signUpSuccess' component  = {SignUpSuccess} />
+              <Route exact path = '/pageNotFound' component  = {NotFound} />
               <Redirect to = '/home'/>
               </Switch>
            </div>

@@ -3,7 +3,7 @@ import React, { Component,useContext } from 'react';
 import { Media, Input } from 'reactstrap';
 import Image from 'react-bootstrap/Image'
 import {Card, CardImg, CardText,Col, CardImgOverlay,CardBody, CardTitle, Button,ModalHeader, ModalBody,Modal} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 
 import { storage,firestore,auth } from '../firebase/firebase';
 import { FadeTransform } from 'react-animation-components';
@@ -125,7 +125,7 @@ class Profile extends Component{
    {
        if(auth.currentUser == null)
         {
-            window.open('/error');
+           this.props.history.push('/pageNotFound');
         }
         else{
   
@@ -145,12 +145,11 @@ class Profile extends Component{
       
         const id = doc.id
         users.push({id, ...data });
-        console.log(users[0]);
+       
         this.setState({ username: users[0].username, name: users[0].name,profileImageUrl: users[0].profileImageUrl, email: users[0].email, cart: users[0].cart },() => {
-            console.log(this.state);
+         
         });
-            console.log(this.state.cart);
-            console.log(this.state);
+           
             }
         });
         })
@@ -216,16 +215,8 @@ class Profile extends Component{
 
     render(){
 
-       
+        
 
-        if(auth.currentUser == null){
-            console.log('user not logged in');
-            return(
-             <div></div>
-         );
-         }
-
-         else{
             const menu = this.state.cart.map((item) => {
                 return (
                   <div  className="col-12 col-md-5 m-1" key={item.id}>
@@ -234,7 +225,7 @@ class Profile extends Component{
                 );
             });
 
-             console.log(this.props.user);
+             
 
              return(
                 <div>
@@ -289,9 +280,9 @@ class Profile extends Component{
              );
          }
     } 
-}
 
 
 
-export default Profile;
+
+export default withRouter(Profile);
 
