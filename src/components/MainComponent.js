@@ -11,14 +11,15 @@ import Profile from './ProfileComponent';
 import AddToSell from './AddToSell';
 import Cart from './CartComponent';
 import Success from './SuccessComponent';
+import SignUpSuccess from './signUpSuccess'
 import {Switch, Route,Redirect,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
-import { postComment,postFeedback,fetchItems,fetchComments,fetchPromos, fetchLeaders,fetchUser } from '../redux/ActionCreators';
+import { postComment,postFeedback,fetchItems,fetchComments,fetchUser } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
-import { firestore,fireauth,auth} from '../firebase/firebase';
+import {auth} from '../firebase/firebase';
 const mapDispatchToProps = dispatch => ({
   
   postComment: (itemId, rating, comment) => dispatch(postComment(itemId, rating, comment)),
@@ -53,18 +54,13 @@ class Main extends Component {
     this.props.fetchItems();
     this.props.fetchComments();
    
-    console.log('i am in');
     auth.onAuthStateChanged( user => {
       if (user) {
-        console.log(user);
        this.setState({user: user}, () => {
-      
-        console.log(this.state.user)
-        console.log(auth.currentUser);
+   
        });
     }
-    else
-    console.log('not user changed');
+   
     });
   }
   
@@ -95,8 +91,7 @@ class Main extends Component {
   const AboutUs = () =>
   {
     return (
-        <About 
-       />
+        <About />
       );
   };
   
@@ -105,10 +100,7 @@ class Main extends Component {
   { 
     
     return (
-        <Profile  
-        
-
-       />
+        <Profile  />
       );
   
   }
@@ -135,6 +127,7 @@ class Main extends Component {
               
               <Route exact path = '/error' component  = {Error} />
               <Route exact path = '/success' component  = {Success} />
+              <Route exact path = '/signUpSuccess' component  = {SignUpSuccess} />
               <Redirect to = '/home'/>
               </Switch>
            </div>

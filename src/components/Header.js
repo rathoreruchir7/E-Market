@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Nav,NavItem,Navbar,NavbarBrand,NavbarToggler,Collapse,Jumbotron, ModalHeader, ModalBody,Button,Modal, FormGroup,Form,Label,Input} from 'reactstrap';
-import {Switch, Route,Redirect,withRouter, Link} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { auth,provider, signInWithGoogle } from '../firebase/firebase';
+import { auth,provider } from '../firebase/firebase';
 
 class Header extends Component{
 	constructor(props) {
@@ -73,7 +73,7 @@ class Header extends Component{
   auth.signInWithPopup(provider).then(function(result) {
  var token = result.credential.accessToken;
  var user = result.user;
- console.log(result);
+ 
  this.props.history.push('/home');
 }).catch(function(error) {
  

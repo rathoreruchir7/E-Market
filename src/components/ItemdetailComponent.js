@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Card, CardImg, CardText, CardImgOverlay, CardBody, CardTitle,Breadcrumb,BreadcrumbItem,
-	Button, Modal, ModalHeader, ModalBody, ModalFooter,Form,FormGroup,FormFeedback,Label,Input,Col,Row} from 'reactstrap';
+	Button, Modal, ModalHeader, ModalBody,Label,Col,Row} from 'reactstrap';
 import {Link,withRouter} from 'react-router-dom';
 import {LocalForm,Control,Errors} from 'react-redux-form';
 import { Loading } from './LoadingComponent';
@@ -308,7 +308,7 @@ class CommentForm extends Component{
         }
 
         else if(props.item !=null){
-            console.log(props.item);
+           
 		return(
 			
 			<div className ="container">
@@ -345,12 +345,11 @@ class CommentForm extends Component{
 
 	else
 	{
-		return(
-			<div></div>
-			);
-	}
-
-	}
+    return(
+        <div></div>
+        );
+    }
+}
 
 
 export default withRouter(Itemdetail); 

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import {Card, CardImg, CardText, CardImgOverlay, CardBody, CardTitle,Breadcrumb,BreadcrumbItem,
-	Button, Modal, ModalHeader, ModalBody, ModalFooter,Form,FormGroup,FormFeedback,Label,Input,Col,Row, FormText} from 'reactstrap';
-import {Link,withRouter} from 'react-router-dom';
-import {LocalForm,Control,Errors} from 'react-redux-form';
-import { Loading } from './LoadingComponent';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import {Button,Form,FormGroup,Label,Input, FormText} from 'reactstrap';
+import {withRouter} from 'react-router-dom';
 import { auth,firestore,storage } from '../firebase/firebase';
 
 class AddToSell extends Component{

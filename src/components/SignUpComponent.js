@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Nav,NavItem,Navbar,NavbarBrand,NavbarToggler,Collapse,Jumbotron, ModalHeader, ModalBody,Button,Modal, FormGroup,Form,Label,Input, FormText} from 'reactstrap';
-import { firestore,fireauth,auth,provider} from '../firebase/firebase';
-import { withRouter, Link } from 'react-router-dom' 
+import {Button, FormGroup,Form,Label,Input} from 'reactstrap';
+import { firestore,auth,provider} from '../firebase/firebase';
+import { withRouter } from 'react-router-dom' 
 
 
 
@@ -69,16 +69,17 @@ class SignUp extends Component{
      // ...
     });
   
-    this.props.history.push('/home');
+    this.props.history.push('/signUpSucess');
     }
   handleSignUp(event) {
 
-        console.log('i am in sign up');
-        console.log(this.state.username); console.log(this.state.password);
-        auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          console.log(res);   
-            })
+      console.log('i am in sign up');
+      console.log(this.state.username); console.log(this.state.password);
+
+      auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((res) => {
+        console.log(res);   
+          })
       .then((res) => console.log('doc written'))
       .catch(() => console.log('error'));
        
@@ -95,18 +96,20 @@ class SignUp extends Component{
         profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
       })
       
-       event.preventDefault();
-       this.props.history.push('/home');
-                
-     }
-     handleImageChange(event)
-     {
+  
+       this.props.history.push('/signUpSuccess');
+  }
+
+     handleImageChange(event){
+     
       if (event.target.files[0]) {
         const image = event.target.files[0];
         this.setState(() => ({image}));
       }
 
      }
+
+
      nextFunc()
      {
        console.log('i am in next func');

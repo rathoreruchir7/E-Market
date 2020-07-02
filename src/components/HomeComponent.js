@@ -1,14 +1,9 @@
-import React,{Component} from 'react';
-import {Switch, Route,Redirect} from 'react-router-dom';
+import React from 'react';
+
 import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle} from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import {FadeTransform} from 'react-animation-components';
-import { render } from '@testing-library/react';
-import {firestore} from '../firebase/firebase';
-
-
-
 
 
 
@@ -25,7 +20,7 @@ function RenderCard({item,isLoading,errMess})
         );
 	}
 	else{
-		console.log(item);
+		
 		return(
 			<FadeTransform in
 			    transformProps={{

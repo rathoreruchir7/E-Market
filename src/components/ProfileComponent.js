@@ -1,12 +1,13 @@
 import React, { Component,useContext } from 'react';
-import { UserContext } from "../providers/UserProvider";
+
 import { Media, Input } from 'reactstrap';
 import Image from 'react-bootstrap/Image'
-import {Card, CardImg, CardText,Col, CardImgOverlay,CardBody, CardTitle,Breadcrumb,BreadcrumbItem, Button,ModalHeader, ModalBody,Modal} from 'reactstrap';
+import {Card, CardImg, CardText,Col, CardImgOverlay,CardBody, CardTitle, Button,ModalHeader, ModalBody,Modal} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import { Loading } from './LoadingComponent';
+
 import { storage,firestore,auth } from '../firebase/firebase';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { FadeTransform } from 'react-animation-components';
+
 
 
 
@@ -39,6 +40,7 @@ class RenderItem extends Component{
         item: this.props.item
     }
         this.addToCart = this.addToCart.bind(this);
+
     }
 
     componentDidMount()
@@ -47,6 +49,7 @@ class RenderItem extends Component{
                                                          
           
    }
+
 
     addToCart(item)
     {   console.log(this.state.cart);
@@ -112,8 +115,12 @@ class Profile extends Component{
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.uploadImage = this.uploadImage.bind(this)
+        this.uploadImage = this.uploadImage.bind(this);
+    
     }
+
+    
+   
    componentDidMount()
    {
        if(auth.currentUser == null)
@@ -121,8 +128,8 @@ class Profile extends Component{
             window.open('/error');
         }
         else{
-        console.log(this.props.user);
-        this.setState({ name: auth.currentUser.displayName, username: auth.currentUser.email, email: auth.currentUser.email})
+  
+        this.setState({ name: auth.currentUser.displayName, username: auth.currentUser.email, email: auth.currentUser.email});
         firestore.collection('user').get()
         .then(snapshot => {
             
@@ -132,10 +139,10 @@ class Profile extends Component{
        const data = doc.data();
        
          if(data.email === auth.currentUser.email){
-       console.log('i ma in fetch');
+      
        
         const data = doc.data()
-        console.log(data);
+      
         const id = doc.id
         users.push({id, ...data });
         console.log(users[0]);
@@ -148,7 +155,7 @@ class Profile extends Component{
         });
         })
         .then((res) => {
-        console.log('fine');
+           //
         })
         .catch(() => console.log('error'));
                                                     
@@ -160,7 +167,7 @@ class Profile extends Component{
      }
 
      uploadImage() {
-        console.log(this.state.image);
+       
 
         const {image} = this.state;
         if(image != '')
@@ -243,25 +250,18 @@ class Profile extends Component{
 
                  <div className='container'>
                     <div className="row">
-                    <div className="cl-12 mt-5"  >
-                        <Media tag="">
-                            <Media left middle>
-                                <Image style={{width: '200px', height: '200px'}} src={this.state.profileImageUrl}  rounded />
-                                
-                            </Media>    
-                            <Media body className="ml-5">
-                                <Media heading>{this.state.name}</Media>
-                                {/* <h3>{this.state.name}</h3> */}
-                                <Button type="button" value="button1" color='primary' onClick={this.toggleModal}>Change Profile Image</Button>
-                            </Media>    
-                       </Media>
+                        <div className="col-12 col-md-2 mt-5"  >
+                          <Image style={{width: '200px', height: '200px'}} src={this.state.profileImageUrl}  rounded />
                         </div>
-                        <div className="col-12">
+                        <div className="col-12 col-md-2 mt-5 offset-md-1"  >
+                            <Media heading>{this.state.name}</Media>
                      
-                        <hr />
-                        </div>             
+                    
+                          <Button type="button" value="button1" color='primary' onClick={this.toggleModal}>Change Profile Image</Button>
+                        </div>
+                                   
                     </div>  
-
+                    <hr />
                
                 <div className="col-12 mt-5" >
                         <Media >
@@ -272,6 +272,7 @@ class Profile extends Component{
                                 <Media heading>{this.state.name}</Media><br />
                                  <p><h6>Username</h6>{this.state.username}</p><br />
                                 <p><h6>Email</h6>{this.state.email}</p>
+                            
                             </Media>    
                        </Media>
                         </div>
