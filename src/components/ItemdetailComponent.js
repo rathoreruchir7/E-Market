@@ -9,6 +9,9 @@ import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { auth,firestore } from '../firebase/firebase';
 // import CommentForm from './CommentForm';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const required = (val) => val && val.length;
 const minLength = (len) => (val) => val && (val.length >= len);
 const maxLength = (len) => (val) => val && (val.length<=len); 
@@ -124,7 +127,8 @@ class CommentForm extends Component{
         }
 
         componentDidMount()
-        {
+        {     console.log(process.env);
+            console.log('i ma in fetch');
             firestore.collection('user').get()
             .then(snapshot => {
                 
@@ -134,7 +138,7 @@ class CommentForm extends Component{
                 
                if(data.email === auth.currentUser.email){
                 console.log('i ma in fetch');
-                
+                console.log(process.env);
                 const data = doc.data()
                 console.log(data);
                const id = doc.id

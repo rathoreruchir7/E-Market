@@ -21,6 +21,7 @@ import { postComment,postFeedback,fetchItems,fetchComments,fetchUser } from '../
 import { actions } from 'react-redux-form';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import {auth} from '../firebase/firebase';
+require('dotenv').config();
 const mapDispatchToProps = dispatch => ({
   
   postComment: (itemId, rating, comment) => dispatch(postComment(itemId, rating, comment)),
@@ -54,11 +55,11 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchItems();
     this.props.fetchComments();
-   
+    console.log(process.envs);
     auth.onAuthStateChanged( user => {
       if (user) {
        this.setState({user: user}, () => {
-   
+          console.log(auth.currentUser);
        });
     }
    
