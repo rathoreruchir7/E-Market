@@ -72,7 +72,7 @@ function Home(props)
 
                             <Carousel.Caption>
                             <h3>Men</h3>
-                            <h5>Walk in for the Fashion, Stay in for the Style.</h5>
+                            <h5>You are made to Kill.</h5>
                             </Carousel.Caption>
                         </Carousel.Item>
 
@@ -98,7 +98,7 @@ function Home(props)
                             />
                               <Carousel.Caption>
                             <h3>Majestic Looks</h3>
-                            <h4>You are made to Kill.</h4>
+                            <h4>Walk in for the Fashion, Stay in for the Style.</h4>
                             </Carousel.Caption>
                         </Carousel.Item>
 
