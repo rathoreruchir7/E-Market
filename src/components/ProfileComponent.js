@@ -272,7 +272,18 @@ class Profile extends Component{
 
                 <div >
                     <div className='col-12 col-md-5'>
-                        <h4>{ this.state.cart.length ? 'My Cart' :'No items to show in Cart'}</h4>
+                    <div className='row col-12 ' >
+                        <h3 className='m-1'>MY</h3><h3 className='m-1' style={{color: '#339FFF'}}>CART</h3>
+                        </div>
+                       <div className='row m-1'>
+                       <div className='m-1' style={{height:'2px',width: '20px' ,borderWidth :'2px', color: 'gray', backgroundColor : 'gray'}} ></div>
+                        <span style={{height: '25px',
+                                        width: '25px',
+                                        backgroundColor: '#339FFF',
+                                        borderRadius: '50%',
+                                        display: 'inline-block',}}></span>
+                        <div className='m-1' style={{height:'2px',width: '20px' ,borderWidth :'2px', color: 'gray', backgroundColor : 'gray'}} ></div>
+                        </div>
                         {menu}
                      </div>
                      
