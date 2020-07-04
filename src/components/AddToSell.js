@@ -137,13 +137,6 @@ class AddToSell extends Component{
                onChange={this.handleChange} />
             </FormGroup>
   
-            <FormGroup className='col-12 col-md-4'>
-              <Label htmlFor="label">Label</Label>
-              <Input type="label" id="label" name="label" 
-               placeholder='eg. New'
-               value={this.state.label}
-               onChange={this.handleChange} />
-            </FormGroup>
   
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="price">Price</Label>
@@ -153,13 +146,6 @@ class AddToSell extends Component{
               onChange={this.handleChange}/>
             </FormGroup>
 
-            <FormGroup className='col-12 col-md-4'>
-              <Label htmlFor="featured">Featured</Label>
-              <Input type="text" id="featured" name="featured"
-              placeholder='true/false'
-              value={this.state.featured}
-              onChange={this.handleChange}/>
-            </FormGroup>
 
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="description">Description</Label>

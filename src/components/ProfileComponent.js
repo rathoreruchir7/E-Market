@@ -220,7 +220,7 @@ class Profile extends Component{
 
             const menu = this.state.cart.map((item) => {
                 return (
-                  <div  className="col-12 col-md-5 m-1" key={item.id}>
+                  <div  className="col-12 col-md-8 m-1" key={item.id}>
                    <RenderMenuItem item={item}  />
                   </div>
                 );
@@ -270,7 +270,7 @@ class Profile extends Component{
                         </div>
                         <hr />
 
-                <div className='row'>
+                <div >
                     <div className='col-12 col-md-5'>
                         <h4>{ this.state.cart.length ? 'My Cart' :'No items to show in Cart'}</h4>
                         {menu}

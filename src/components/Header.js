@@ -108,7 +108,7 @@ this.props.history.push('/home');
 			<Navbar dark expand="md">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="30" width="41" alt='E-Market' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='E-Market' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
@@ -149,7 +149,7 @@ this.props.history.push('/home');
 			  <div className="container">
 			    <div className="row row-header">
 			      <div className="col-12 col-sm-6">
-			      	<h1>E-Market</h1>
+			      	<h1>Inspire Bazar-E</h1>
                        <p>Born to shop. Forced to work.</p>
 			      </div>
 			    </div>

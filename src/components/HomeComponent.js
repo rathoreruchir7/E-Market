@@ -80,7 +80,7 @@ function Home(props)
                             <img
                              className="d-block w-100 col-12 col-md-12 row-10 row-md-2"
                              style={{ width: '1900px' , height: '500px',opacity: '1.0'}}
-                            src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2FOnePlus-TV-Launch-banner-3rd-July-1365x260.jpg?alt=media&token=f1cbfaef-ee84-4cf7-b9c5-6ab19b72cad8'
+                            src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2F1543925884_landingpage-banner-electronics.jpg?alt=media&token=9ae2debe-7bd1-4a1c-8dcd-58a4ec4d575f'
                             alt="Third slide"
                             />
                               <Carousel.Caption>

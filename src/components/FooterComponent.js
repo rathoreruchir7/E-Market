@@ -26,7 +26,7 @@ function Footer(props) {
 		              <i className="fa fa-phone fa-lg"></i>: +852 1234 5678<br />
 		              <i className="fa fa-fax fa-lg"></i>: +852 8765 4321<br />
 		              <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:emarket@shop.net">
-                         emarket@food.net</a>
+                         inspireBazarE@food.net</a>
                     </address>
                 </div>
                 <div className="col-12 col-sm-4 align-self-center">
@@ -42,7 +42,7 @@ function Footer(props) {
             </div>
             <div className="row justify-content-center">             
                 <div className="col-auto">
-                    <p>© Copyright 2018 E-Market</p>
+                    <p>© Copyright 2020 Inspire Bazar E</p>
                 </div>
             </div>
         </div>
