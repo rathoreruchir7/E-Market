@@ -284,7 +284,8 @@ class Profile extends Component{
                                         display: 'inline-block',}}></span>
                         <div className='m-1' style={{height:'2px',width: '20px' ,borderWidth :'2px', color: 'gray', backgroundColor : 'gray'}} ></div>
                         </div>
-                        {menu}
+                        {this.state.cart.length ? <div>{menu}</div> : 'No items in your cart. Go to Menu to add your favourites item to buy.'}
+                        
                      </div>
                      
                  </div> 
