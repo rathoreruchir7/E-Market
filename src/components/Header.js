@@ -41,9 +41,7 @@ class Header extends Component{
       isModalOpen1: !this.state.isModalOpen1
     });
   }
- componentDidMount(){
-   this.toggleNav();
- }
+ 
   handleLogin(event)
   {
     
@@ -114,16 +112,16 @@ this.props.history.push('/home');
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar >
                             <NavItem>
-                                <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
+                                <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg" onClick={this.toggleNav}></span> Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg"></span> About Us</NavLink>
+                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg" onClick={this.toggleNav}></span> About Us</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
+                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg" onClick={this.toggleNav}></span> Menu</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
+                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg" onClick={this.toggleNav}></span> Contact Us</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link" to= { auth.currentUser ? '/sellItem' : ''}><span className={ auth.currentUser ? "fa fa-plus fa-lg" : ''}></span>{ auth.currentUser ? 'Add To Sell' : ''}</NavLink>
