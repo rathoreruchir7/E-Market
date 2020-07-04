@@ -52,7 +52,7 @@ function Home(props)
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            style={{width: '1900px' , height: '300px',opacity: '1.0'}}
+                            style={{width: '1900px' , height: '500px',opacity: '1.0'}}
                             src= 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2Fwoman-with-shopping-bags-studio-yellow-background-isolated_1303-14294.jpg?alt=media&token=822bbd3b-f203-441f-be5c-f09451c918aa'
                             alt="First slide"
                             />
@@ -65,7 +65,7 @@ function Home(props)
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            style={{width: '1900px' , height: '300px',opacity: '0.8'}}
+                            style={{width: '1900px' , height: '500px',opacity: '0.8'}}
                             src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2Fmen_shopping.jpg?alt=media&token=f6df09a3-1bf1-4ce6-80a2-b4a6c2bfa4f9'
                             alt="Third slide"
                             />
@@ -79,7 +79,7 @@ function Home(props)
                         <Carousel.Item>
                             <img
                              className="d-block w-100 col-12 col-md-12 row-10 row-md-2"
-                             style={{ width: '1900px' , height: '300px',opacity: '1.0'}}
+                             style={{ width: '1900px' , height: '500px',opacity: '1.0'}}
                             src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2F1543925884_landingpage-banner-electronics.jpg?alt=media&token=9ae2debe-7bd1-4a1c-8dcd-58a4ec4d575f'
                             alt="Third slide"
                             />
@@ -92,7 +92,7 @@ function Home(props)
                         <Carousel.Item>
                             <img
                              className="d-block w-100"
-                             style={{width: '1900px' , height: '300px', opacity: '0.8'}}
+                             style={{width: '1900px' , height: '500px', opacity: '0.8'}}
                             src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2Fshopping-beautiful-women-wearing-glasses-with-colorful-paper-bags-yellow_1150-19177.jpg?alt=media&token=9529d6c8-0d49-419f-98fc-462e56318e51'
                             alt="Third slide"
                             />

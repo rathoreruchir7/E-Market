@@ -70,6 +70,6 @@ address{
     transition: all 300ms ease-out;
 }
 
-.image-hover:hover{
-    width: 100
+.menu:hover{
+  opacity: 0.2
 }

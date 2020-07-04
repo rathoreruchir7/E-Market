@@ -13,7 +13,7 @@ class  RenderMenuItem extends Component{
         }
         this.toggleHover = this.toggleHover.bind(this);
     }
-  
+     
     toggleHover()
     {   
         this.setState({hover: !this.state.hover},() => console.log(this.state.hover));
@@ -29,15 +29,17 @@ class  RenderMenuItem extends Component{
     return(
   
     
-   <Card style={linkStyle} onMouseEnter={() => this.toggleHover} onMouseLeave={() =>this.toggleHover}>
+       
+   <Card classname='menu' style={linkStyle} >
        <Link to = {`/menu/${this.props.item.id}`}> 
-       <CardImg width="50%" src={this.props.item.image} alt={this.props.item.name} />
+       <CardImg   onMouseEnter={() => this.toggleHover} onMouseLeave={() =>this.toggleHover} width="50%" src={this.props.item.image} alt={this.props.item.name} />
      
         <CardImgOverlay>
             <CardTitle>{this.props.item.name}</CardTitle>
         </CardImgOverlay>
       </Link>
    </Card>
+   
    
 
    

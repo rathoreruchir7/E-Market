@@ -81,7 +81,7 @@ class CommentForm extends Component{
                     </Input>
                    
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Label htmlFor="author">Your Name</Label>
                         <Input type="text"  name="author" id="author" 
                         valid={errors.author === ''}
@@ -90,7 +90,7 @@ class CommentForm extends Component{
                        onChange={this.handleInputChange}
                        />
                         <FormFeedback>{errors.author}</FormFeedback>
-                   </FormGroup>
+                   </FormGroup> */}
                    <FormGroup >
                        <Label htmlFor="comment">Comment</Label>
                        <Input type="textarea" name="comment" id="comment"  onChange={this.handleInputChange}/>
