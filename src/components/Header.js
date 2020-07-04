@@ -64,8 +64,8 @@ class Header extends Component{
       console.log(errorMessage);
     });
     console.log(auth.currentUser);
-  
-    this.props.history.push('/home');
+    event.preventDefault();
+    // this.props.history.push('/home');
  }
 
  googleSignInHandle(){
