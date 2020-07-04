@@ -27,7 +27,7 @@ class Header extends Component{
    
 	toggleNav()
 	{
-		this.setState({isNavOpen : !this.state.isNavOpen});
+		this.setState({isNavOpen : !this.state.isNavOpen},() => console.log(this.state.isNavOpen));
   }
   
   toggleModal() {
@@ -111,30 +111,30 @@ this.props.history.push('/home');
                         <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='E-Market' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar >
-                            <NavItem>
-                                <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg" onClick={this.toggleNav}></span> Home</NavLink>
+                            <NavItem  onClick={this.toggleNav}>
+                                <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg" onClick={this.toggleNav}></span> About Us</NavLink>
+                            <NavItem  onClick={this.toggleNav}>
+                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg" ></span> About Us</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg" onClick={this.toggleNav}></span> Menu</NavLink>
+                            <NavItem  onClick={this.toggleNav}>
+                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg" ></span> Menu</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg" onClick={this.toggleNav}></span> Contact Us</NavLink>
+                            <NavItem  onClick={this.toggleNav}>
+                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg" ></span> Contact Us</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem  onClick={this.toggleNav}>
                                 <NavLink className="nav-link" to= { auth.currentUser ? '/sellItem' : ''}><span className={ auth.currentUser ? "fa fa-plus fa-lg" : ''}></span>{ auth.currentUser ? 'Add To Sell' : ''}</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem  onClick={this.toggleNav}>
                                 <NavLink className="nav-link" to= { auth.currentUser ? '/profile' : ''}><span className={ auth.currentUser ? "fa fa-user fa-lg" : ''}></span>{ auth.currentUser ? 'Profile' : ''}</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem  onClick={this.toggleNav}>
                                 <NavLink className="nav-link" to= { auth.currentUser ? '' : '/signup'}><span className={ auth.currentUser ? "" : 'fa fa-sign-in fa-lg'}></span>{ auth.currentUser ? '' : 'Sign Up'}</NavLink>
                             </NavItem>
                             </Nav>
                             <Nav className="" navbar>
-                              <NavItem>
+                              <NavItem  onClick={this.toggleNav}>
                                 <Button outline onClick={auth.currentUser? this.toggleModal1 :this.toggleModal}>
                                     <span className={ auth.currentUser? "fa fa-sign-out fa-lg" : "fa fa-sign-in  fa-lg"}></span>{auth.currentUser ? 'Logut' : 'Login'}
                                 </Button>
