@@ -106,7 +106,7 @@ class  RenderMenuItem extends Component{
                             />
                               <Carousel.Caption>
                             <h3 className='offset-1 offset-md-1'>Fill Your Cart</h3>
-                            <h4 className='offset-1 offset-md-1'>It's shop o'clock.</h4>
+                            <h4 className='offset-2 m-1 offset-md-1'>It's shop o'clock.</h4>
                             </Carousel.Caption>
                         </Carousel.Item>
 
@@ -136,7 +136,7 @@ class  RenderMenuItem extends Component{
                             <h4>New Offers</h4>
                             </Carousel.Caption>
                         </Carousel.Item>
-                        
+
                         
                         <Carousel.Item>
                             <img
