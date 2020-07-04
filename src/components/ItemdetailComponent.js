@@ -34,7 +34,7 @@ class CommentForm extends Component{
     handleSubmit(values)
     {   
         if(auth.currentUser != null) {
-         alert(JSON.stringify(values));   
+           
          this.toggleModal();
          this.props.postComment(this.props.itemId, values.rating, values.comment);
     }
@@ -73,7 +73,7 @@ class CommentForm extends Component{
                     </Control.select>
                    </Col>
                     </Row>
-                    <Row className="form-group">
+                    {/* <Row className="form-group">
                         <Label htmlFor="author" md={12}>Your Name</Label>
                         <Col md={12}>
                         <Control.text model=".author"  name="author" id="author" className="author"
@@ -93,7 +93,7 @@ class CommentForm extends Component{
                                      />
                         </Col>
                     
-                   </Row>
+                   </Row> */}
                    <Row className="form-group" >
                        <Label htmlFor="comment" md={12}>Comment</Label>
                        <Col md={12}>
