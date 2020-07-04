@@ -117,7 +117,7 @@ class AddToSell extends Component{
             <br />
             <div classname='row m-1' style={{justifyContent: 'center' , alignContent: 'center'}}>
             <h1 style={{justifyContent: 'center' , alignContent: 'center'}}>Want to Sell ?</h1><br />
-            <h3>Inspire Bazar-E Welcomes You !</h3>
+            <h3>Inspire Welcomes You !</h3>
             </div>
             <hr />
             <div>Add the details and upload the image of the product</div><br />

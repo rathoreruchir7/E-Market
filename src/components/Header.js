@@ -56,6 +56,8 @@ class Header extends Component{
     console.log(typeof(password));
   
     auth.signInWithEmailAndPassword(email, password)
+    .then((res) =>{ console.log(res);
+       this.props.history.push('/home'); })
     .catch(function(error) {
       console.log('cant log in');
       window.open('/error');
@@ -65,7 +67,7 @@ class Header extends Component{
     });
     console.log(auth.currentUser);
     event.preventDefault();
-    // this.props.history.push('/home');
+    
  }
 
  googleSignInHandle(){
