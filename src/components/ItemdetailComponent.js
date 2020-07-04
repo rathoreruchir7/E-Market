@@ -238,7 +238,7 @@ class CommentForm extends Component{
                     exitTransform: 'scale(0.5) translateY(-50%)'
                 }}>
                   <Card>
-                    <CardImg top src={this.props.item.image} alt={this.props.item.name} />
+                    <div className='image-hover'><CardImg top src={this.props.item.image} alt={this.props.item.name} /></div>
                     <CardBody>
                     <CardTitle>{this.props.item.name}</CardTitle>
                     <CardTitle>${this.props.item.price}</CardTitle>

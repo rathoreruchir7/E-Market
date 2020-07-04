@@ -16,13 +16,13 @@ function RenderMenuItem({item,onClick})
 { return(
   
 
-   <Card >
+   <Card className='m-1'>
        <Link to = {`/menu/${item.id}`}> 
         <CardImg width="100%" src={item.image} alt={item.name} />
         <CardImgOverlay>
             <CardTitle>{item.name}</CardTitle>
         </CardImgOverlay>
-        <CardBody></CardBody>
+<CardBody>${item.price}</CardBody>
       </Link>
    </Card>
 
@@ -270,10 +270,11 @@ class Profile extends Component{
                         <hr />
 
                 <div className='row'>
-                    <div className='col-12 col-md-4'>
+                    <div className='col-12 col-md-5'>
                         <h4>{ this.state.cart.length ? 'My Cart' :'No items to show in Cart'}</h4>
                         {menu}
                      </div>
+                     
                  </div> 
                  </div>
             </div>
