@@ -105,12 +105,12 @@ this.props.history.push('/home');
 		return(
 			
 		  <React.Fragment>	
-			<Navbar dark expand="md">
-                    <div className="container">
+			<Navbar dark expand="md" style={{position: 'sticky', top: '0'  , zIndex: 10}} >
+                    <div className="container" >
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='E-Market' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
-                            <Nav navbar>
+                            <Nav navbar >
                             <NavItem>
                                 <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>

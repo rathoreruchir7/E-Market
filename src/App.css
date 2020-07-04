@@ -30,6 +30,7 @@ address{
 
 .navbar-dark {
     background-color: #3238a8;
+    position: 'sticky';
 }
 
 .rating
