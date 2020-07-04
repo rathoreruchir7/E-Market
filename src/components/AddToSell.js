@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button,Form,FormGroup,Label,Input, FormText,FormFeedback, Alert} from 'reactstrap';
+import {Button,Form,FormGroup,Label,Input, FormText,FormFeedback, Alert, Popover} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import { auth,firestore,storage } from '../firebase/firebase';
 
@@ -110,7 +110,8 @@ class AddToSell extends Component{
             this.props.history.push('/success')
         }
         else{
-            alert('The Form cannot be submitted. Check out if each has been filled :)')
+            alert('The Form cannot be submitted. Check out if each field has been properly filled :)')
+            event.preventDefault();
         }
     }
     else{
