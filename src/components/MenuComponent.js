@@ -50,6 +50,7 @@ class  RenderMenuItem extends Component{
     
 
    const Menu = (props) => {
+    window.scrollTo(0,0);
         const menu = props.items.items.map((item) => {
             return (
               <div  className="col-12 col-md-5 m-1 image-hover" key={item.id}>

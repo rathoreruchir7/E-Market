@@ -123,6 +123,7 @@ class Profile extends Component{
    
    componentDidMount()
    {
+    window.scrollTo(0,0);
        if(auth.currentUser == null)
         {
            this.props.history.push('/pageNotFound');

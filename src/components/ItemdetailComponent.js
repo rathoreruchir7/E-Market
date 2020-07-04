@@ -125,9 +125,10 @@ class CommentForm extends Component{
             this.addToCart = this.addToCart.bind(this);
            
         }
-
+         
         componentDidMount()
-        {     console.log(process.env);
+        {   window.scrollTo(0,0);
+            console.log(process.env);
             console.log('i ma in fetch');
             firestore.collection('user').get()
             .then(snapshot => {
