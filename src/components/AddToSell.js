@@ -114,7 +114,13 @@ class AddToSell extends Component{
 
         return (
             <Form onSubmit={this.handleSubmit}>
-            <FormText><br /><h1>Want to Sell, Add the details and image of the item</h1></FormText><br /><hr />
+            <br />
+            <div classname='row m-1' style={{justifyContent: 'center' , alignContent: 'center'}}>
+            <h1 style={{justifyContent: 'center' , alignContent: 'center'}}>Want to Sell ?</h1><br />
+            <h3>E-Market Welcomes You !</h3>
+            </div>
+            <hr />
+            <div>Add the details and upload the image of the product</div><br />
             <FormGroup className='col-12 col-md-4'>
               <Label htmlFor="name">Name</Label>
               <Input type="text" id="name" name="name" 

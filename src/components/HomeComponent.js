@@ -107,7 +107,7 @@ function Home(props)
 			<div className="row align-items-start">
 			
 				<div className="col-12 col-md m-1">
-				  <RenderCard item={props.item[2]} isLoading={props.itemsLoading} errMess={props.itemsErrMess}/>
+				  <RenderCard item={props.item[3]} isLoading={props.itemsLoading} errMess={props.itemsErrMess}/>
 				</div>
 
 				<div className="col-12 col-md m-1">
