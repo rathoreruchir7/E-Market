@@ -41,7 +41,9 @@ class Header extends Component{
       isModalOpen1: !this.state.isModalOpen1
     });
   }
-
+ componentDidMount(){
+   this.toggleNav();
+ }
   handleLogin(event)
   {
     

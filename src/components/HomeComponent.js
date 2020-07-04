@@ -92,7 +92,7 @@ function Home(props)
                         <Carousel.Item>
                             <img
                              className="d-block w-100"
-                             style={{width: '1900px' , height: '300px', opacity: '0.8'}}
+                             style={{width: '1900px' , height: '500px', opacity: '0.8'}}
                             src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2Fshopping-beautiful-women-wearing-glasses-with-colorful-paper-bags-yellow_1150-19177.jpg?alt=media&token=9529d6c8-0d49-419f-98fc-462e56318e51'
                             alt="Third slide"
                             />

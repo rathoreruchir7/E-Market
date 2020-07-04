@@ -96,6 +96,21 @@ class  RenderMenuItem extends Component{
                         <h3 className='m-1' style={{color: '#339FFF'}}>FEATURED</h3>
                         </div>
                         <Carousel>
+
+                        <Carousel.Item>
+                            <img
+                             className="d-block w-100"
+                             style={{width: '1900px' , height: '500px', opacity: '1'}}
+                            src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2Fportrait-young-happy-smiling-woman-with-shopping-bags-white-background_231208-1853.jpg?alt=media&token=a1154a55-0c2c-434e-a2a4-f62203772e09'
+                            alt="Third slide"
+                            />
+                              <Carousel.Caption>
+                            <h3 className='offset-1 offset-md-1'>Fill Your Cart</h3>
+                            <h4 className='offset-1 offset-md-1'>It's shop o'clock.</h4>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+
+
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
@@ -108,6 +123,20 @@ class  RenderMenuItem extends Component{
                             <h5>Everyday living. Be unique, be brave, be divine.</h5>
                             </Carousel.Caption>
                         </Carousel.Item>
+
+                        <Carousel.Item>
+                            <img
+                             className="d-block w-100"
+                             style={{width: '1900px' , height: '500px', opacity: '1'}}
+                            src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2Famazon-india-electronics-sale-2015-banner1.jpg?alt=media&token=e9def353-77a4-4cff-86fb-79100378b701'
+                            alt="Third slide"
+                            />
+                              <Carousel.Caption>
+                            <h3>Exclusive</h3>
+                            <h4>New Offers</h4>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        
                         
                         <Carousel.Item>
                             <img
@@ -123,31 +152,9 @@ class  RenderMenuItem extends Component{
                             </Carousel.Caption>
                         </Carousel.Item>
 
-                        <Carousel.Item>
-                            <img
-                             className="d-block w-100"
-                             style={{width: '1900px' , height: '400px', opacity: '0.8'}}
-                            src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2FOnePlus-TV-Launch-banner-3rd-July-1365x260.jpg?alt=media&token=f1cbfaef-ee84-4cf7-b9c5-6ab19b72cad8'
-                            alt="Third slide"
-                            />
-                              <Carousel.Caption>
-                            <h3>Exclusive</h3>
-                            <h4>Never Settle</h4>
-                            </Carousel.Caption>
-                        </Carousel.Item>
+                      
 
-                        <Carousel.Item>
-                            <img
-                             className="d-block w-100"
-                             style={{width: '1900px' , height: '500px', opacity: '0.6'}}
-                            src='https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images2%2Fshopping-beautiful-women-wearing-glasses-with-colorful-paper-bags-yellow_1150-19177.jpg?alt=media&token=9529d6c8-0d49-419f-98fc-462e56318e51'
-                            alt="Third slide"
-                            />
-                              <Carousel.Caption>
-                            <h3>Majestic Looks</h3>
-                            <h4>You are made to Kill.</h4>
-                            </Carousel.Caption>
-                        </Carousel.Item>
+                       
 
                         
                         </Carousel>
