@@ -72,24 +72,28 @@ class Header extends Component{
 
  googleSignInHandle(){
         
-  auth.signInWithPopup(provider).then(function(result) {
- var token = result.credential.accessToken;
- var user = result.user;
- 
- this.props.history.push('/home');
-}).catch(function(error) {
- 
- var errorCode = error.code;
- var errorMessage = error.message;
- var email = error.email;
- var credential = error.credential;
- window.open('/error');
- // ...
-});
+  auth.signInWithRedirect(provider).then(function(result) {
+    if (result.credential) {
+      var token = result.credential.accessToken;
+      console.log(token);
+    }
+    var user = result.user;
+    console.log(user);
+    console.log('after user');
+   
+  }).catch(function(error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+     var email = error.email;
+     var credential = error.credential;
+     console.log(errorMessage);
+     window.open('/error');
+  });
 this.setState({
   isModalOpen: !this.state.isModalOpen
 });
 this.props.history.push('/home');
+
 }
 
   handleLogout()
