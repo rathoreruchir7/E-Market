@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle} from 'reactstrap';
@@ -41,11 +41,24 @@ function RenderCard({item,isLoading,errMess})
 	
 }
 
+class Home extends Component{
+  constructor(props)
+  {
+    super(props);
+    this.state={
+      hidden: true
+    }
+  }
 
-function Home(props)
-{		
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ hidden: false})
+    },2000)
+  }
+  render()
+  {		
 
-
+ if(!this.state.hidden){
 	return(
 		<div className="container">
 			<Carousel>
@@ -107,24 +120,28 @@ function Home(props)
 			<div className="row align-items-start">
 			
 				<div className="col-12 col-md m-1">
-				  <RenderCard item={props.item[3]} isLoading={props.itemsLoading} errMess={props.itemsErrMess}/>
+				  <RenderCard item={this.props.item[3]} isLoading={this.props.itemsLoading} errMess={this.props.itemsErrMess}/>
 				</div>
 
 				<div className="col-12 col-md m-1">
-				  <RenderCard item={props.item[0]}
-				   isLoading={props.itemsLoading} 
-				   errMess={props.itemsErrMess} />
+				  <RenderCard item={this.props.item[0]}
+				   isLoading={this.props.itemsLoading} 
+				   errMess={this.props.itemsErrMess} />
 				</div>
 
 				<div className="col-12 col-md m-1">
-				  <RenderCard item={props.item[1]} 
-				   isLoading={props.itemsLoading}
-				   errMess={props.itemsErrMess}/>
+				  <RenderCard item={this.props.item[1]} 
+				   isLoading={this.props.itemsLoading}
+				   errMess={this.props.itemsErrMess}/>
 				</div>
 			</div>
 		</div>
-		);
+    );
+  }
+  else{
+    return(<div>Loading...</div>)
+  }
 	
+  }
 }
-
 export default Home;

@@ -13,7 +13,9 @@ class Header extends Component{
           isNavOpen: false,
           isModalOpen: false,
           isModalOpen1: false,
-          validCredential: true
+          validCredential: true,
+          user: '',
+          hidden: true
           
         };
         this.toggleNav = this.toggleNav.bind(this);
@@ -69,7 +71,13 @@ class Header extends Component{
     event.preventDefault();
     
  }
-
+ 
+ componentWillMount() {
+   console.log('ruchir');
+    setTimeout(() => {
+      this.setState({hidden: false})
+    }, 5000)
+ }
  googleSignInHandle(){
         
   auth.signInWithRedirect(provider).then(function(result) {
@@ -80,6 +88,7 @@ class Header extends Component{
     var user = result.user;
     console.log(user);
     console.log('after user');
+    
    
   }).catch(function(error) {
     var errorCode = error.code;
@@ -107,7 +116,8 @@ this.props.history.push('/home');
   }
 
 	render()
-	{
+	{ 
+    if(!this.state.hidden) {
 		return(
 			
 		  <React.Fragment>	
@@ -205,7 +215,18 @@ this.props.history.push('/home');
 			</React.Fragment>
 			
 			);
-	}
+    }
+    else
+    {
+      return(
+         <div className="col-12" style={{justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
+            <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
+            <p>Loading . . .</p>
+        </div>
+      );
+    }
+  
+  }
 }
 
 export default withRouter(Header);

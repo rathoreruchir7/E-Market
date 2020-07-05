@@ -48,7 +48,8 @@ class Main extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        user: null
+        user: null,
+        
       }
   }
  
@@ -56,7 +57,7 @@ class Main extends Component {
     window.scrollTo(0,0);
     this.props.fetchItems();
     this.props.fetchComments();
-    console.log(process.envs);
+    console.log(process.env);
     auth.onAuthStateChanged( user => {
       if (user) {
        this.setState({user: user}, () => {
@@ -110,7 +111,7 @@ class Main extends Component {
   return (
    
     <div>
-    <Header />
+    <Header  />
       <TransitionGroup>    
         <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
             <div>

@@ -89,6 +89,7 @@ export const postFeedback=(firstname,lastname,telnum,email,agree,contactType,mes
 export const fetchItems = () => (dispatch) => {
 
     dispatch(itemsLoading(true));
+    
                                                               
     return  firestore.collection('items').get()
     .then(snapshot => {
