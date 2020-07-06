@@ -1,9 +1,10 @@
 import React,{useState,useEffect, Component} from 'react';
 import {Card, CardImg, CardText, CardImgOverlay, CardBody, CardTitle,Breadcrumb,BreadcrumbItem} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel'
 import { Loading } from './LoadingComponent';
 import Image from 'react-bootstrap/Image';
+import ReactSearchBox from 'react-search-box';
 class  RenderMenuItem extends Component{
     constructor(props)
     {
@@ -51,8 +52,21 @@ class  RenderMenuItem extends Component{
 
     
 
-   const Menu = (props) => {
+const Menu = (props) => {
     window.scrollTo(0,0);
+    var data=[];
+     var length = props.items.items.length;
+     console.log(length);
+    var query;
+     for(var i=0;i<length;i++)
+     {
+         data.push({
+             key: props.items.items[i].id,
+             value: props.items.items[i].name
+         });
+     }
+     console.log(data);
+
         const menu = props.items.items.map((item) => {
             return (
               <div  className="col-12 col-md-5 m-1 image-hover" key={item.id}>
@@ -90,8 +104,25 @@ class  RenderMenuItem extends Component{
                         <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
                         <BreadcrumbItem active>Menu</BreadcrumbItem>
                       </Breadcrumb>
-    
+                        
+
                        <div className="col-12">
+
+                       <div className='row col-12 m-1' style={{justifyContent: 'center', alignContent:'center'}}>
+                                <ReactSearchBox
+                                        placeholder="Search For..."
+                                        value=""
+                                        data={data}
+                                        callback={record => console.log(record)}
+                                        onSelect={(value) => { console.log(value); query=value;}}
+                                        />
+                                        <div style={{height: '40px'}}>
+                                        <button style={{color: 'white', backgroundColor: '#339FFF', border: 0, height: '40px'}} onClick={() => {console.log(query.key);  props.history.push(`/menu/${query.key}`);}}><i className='fa fa-search' /></button>
+                                        </div>
+
+                        </div>
+                   
+
                        <div className='row col-12 m-1' style={{justifyContent: 'center', alignContent:'center'}}>
                         <h3 className='m-1' style={{color: '#339FFF'}}>FEATURED</h3>
                         </div>
@@ -185,4 +216,4 @@ class  RenderMenuItem extends Component{
     }
 
 
-export default Menu;
+export default withRouter(Menu);
