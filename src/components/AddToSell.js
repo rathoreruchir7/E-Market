@@ -90,7 +90,7 @@ class AddToSell extends Component{
            if(this.state.name!='' && this.state.price!='' && this.state.category!='' && this.state.description!='' && this.state.image!='')
            { 
                 console.log(this.state);
-                firestore.collection('items')
+                firestore.collection('items to be approved')
                 .add({
                 name: this.state.name.toString(),
                 price: this.state.price.toString(),

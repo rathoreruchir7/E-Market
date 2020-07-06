@@ -21,6 +21,7 @@ import { postComment,postFeedback,fetchItems,fetchComments,fetchUser } from '../
 import { actions } from 'react-redux-form';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import {auth} from '../firebase/firebase';
+import Search from './searchEx';
 require('dotenv').config();
 const mapDispatchToProps = dispatch => ({
   
@@ -127,6 +128,7 @@ class Main extends Component {
               <Route exact path = '/aboutus' component  = {AboutUs} />
               <Route exact path = '/sellItem' component  = {AddToSell} />
               <Route exact path = '/myCart' component  = {Cart} />
+              <Route exact path = '/search' component  = {Search} />
 
               
               <Route exact path = '/error' component  = {Error} />
