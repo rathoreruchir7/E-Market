@@ -115,9 +115,10 @@ const Menu = (props) => {
                                         data={data}
                                         callback={record => console.log(record)}
                                         onSelect={(value) => { console.log(value); query=value;}}
+
                                         />
                                         <div style={{height: '40px'}}>
-                                        <button style={{color: 'white', backgroundColor: '#339FFF', border: 0, height: '40px'}} onClick={() => {console.log(query.key);  props.history.push(`/menu/${query.key}`);}}><i className='fa fa-search' /></button>
+                                        <button style={{color: 'white', backgroundColor: '#339FFF', border: 0, height: '40px'}} onClick={() => {console.log(query.key);  props.history.push(`/menu/${query.key}`);}} onKeyPress={(event) => {if(event.keyCode == 13){console.log(query.key); props.history.push(`/menu/${query.key}`);}}}><i className='fa fa-search' /></button>
                                         </div>
 
                         </div>

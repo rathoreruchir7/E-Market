@@ -107,7 +107,7 @@ class AddToSell extends Component{
                 
                 });
 
-            this.props.history.push('/success')
+            this.props.history.push('/success');
         }
         else{
             alert('The Form cannot be submitted. Check out if each field has been properly filled :)')

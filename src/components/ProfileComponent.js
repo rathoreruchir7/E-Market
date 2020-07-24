@@ -43,9 +43,9 @@ class RenderItem extends Component{
 
     }
 
-    componentDidMount()
+    componentWillMount()
     {
-        
+       
                                                          
           
    }
@@ -110,7 +110,8 @@ class Profile extends Component{
             image: '',
             cart: [],
             image: '',
-            isModalOpen: false
+            isModalOpen: false,
+            hidden: true
             
         }
         this.toggleModal = this.toggleModal.bind(this);
@@ -123,14 +124,20 @@ class Profile extends Component{
    
    componentDidMount()
    {
-    window.scrollTo(0,0);
-       if(auth.currentUser == null)
+    window.scrollTo(0,800);
+
+    console.log('profile componentWillMount');
+    setTimeout(() => {
+        
+        if(auth.currentUser == null)
         {
+            console.log('in the if ');
            this.props.history.push('/pageNotFound');
         }
         else{
-  
-        this.setState({ name: auth.currentUser.displayName, username: auth.currentUser.email, email: auth.currentUser.email});
+            
+            
+        this.setState({ name: auth.currentUser.displayName, username: auth.currentUser.email, email: auth.currentUser.email,hidden: false});
         firestore.collection('user').get()
         .then(snapshot => {
             
@@ -155,21 +162,29 @@ class Profile extends Component{
         });
         })
         .then((res) => {
-           //
+           var scrollToCart = document.getElementById('email');
+           console.log(scrollToCart);
+           if(this.props.isCart)
+               scrollToCart.scrollIntoView();
         })
         .catch(() => console.log('error'));
+        
                                                     
              
      }
+
+    }, 3000);
+
+   
+
+     
     }
      toggleModal() {
          this.setState({ isModalOpen: !this.state.isModalOpen});
      }
 
      uploadImage() {
-       
-
-        const {image} = this.state;
+       const {image} = this.state;
         if(image != '')
         {
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -217,7 +232,7 @@ class Profile extends Component{
     render(){
 
         
-
+            if(!this.state.hidden){
             const menu = this.state.cart.map((item) => {
                 return (
                   <div  className="col-12 col-md-8 m-1" key={item.id}>
@@ -262,8 +277,8 @@ class Profile extends Component{
                             </Media>    
                             <Media body className="ml-5">
                                 <Media heading>{this.state.name}</Media><br />
-                                 <p><h6>Username</h6>{this.state.username}</p><br />
-                                <p><h6>Email</h6>{this.state.email}</p>
+                                 <p id='username'><h6>Username</h6>{this.state.username}</p><br />
+                                <p id='email'><h6>Email</h6>{this.state.email}</p>
                             
                             </Media>    
                        </Media>
@@ -271,7 +286,7 @@ class Profile extends Component{
                         <hr />
 
                 <div >
-                    <div className='col-12 col-md-5'>
+                    <div className='col-12 col-md-5' id='mycart'>
                     <div className='row col-12 ' >
                         <h3 className='m-1'>MY</h3><h3 className='m-1' style={{color: '#339FFF'}}>CART</h3>
                         </div>
@@ -293,6 +308,18 @@ class Profile extends Component{
             </div>
              );
          }
+
+         else{
+            return(
+                <div className="col-12" style={{justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
+                   <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
+                   <p>Loading . . .</p>
+               </div>
+             ); 
+         }
+
+       }
+
     } 
 
 

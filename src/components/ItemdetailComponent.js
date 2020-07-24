@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Card, CardImg, CardText, CardImgOverlay, CardBody, CardTitle,Breadcrumb,BreadcrumbItem,
-	Button, Modal, ModalHeader, ModalBody,Label,Col,Row} from 'reactstrap';
+	Button, Modal, ModalHeader, ModalBody,Label,Col,Row, Form, FormGroup, Input} from 'reactstrap';
 import {Link,withRouter} from 'react-router-dom';
 import {LocalForm,Control,Errors} from 'react-redux-form';
 import { Loading } from './LoadingComponent';
@@ -21,10 +21,12 @@ class CommentForm extends Component{
         this.state={
            
             isModalOpen:false,
+            isLoginModalOpen: false
            
 
         };
         this.toggleModal = this.toggleModal.bind(this);
+        this.toggleModal1 = this.toggleModal1.bind(this);
         
         this.handleSubmit = this.handleSubmit.bind(this);
        
@@ -45,17 +47,62 @@ class CommentForm extends Component{
  }
     
 
-    toggleModal() {
-        this.setState({
-          isModalOpen: !this.state.isModalOpen
-        });
+    toggleModalDecide() {
+        if(!auth.currentUser)
+            {
+                
+                this.toggleModal1();
+            }
+        else
+          this.toggleModal();
       }
+    toggleModal()
+    {
+        this.setState({ isModalOpen: !this.state.isModalOpen});
+    }
+
+    toggleModal1()
+    {
+        this.setState({ isLoginModalOpen: !this.state.isLoginModalOpen});
+    }
   
     render(){
         
         return(
+            <React.Fragment>
+                 <Modal isOpen={this.state.isLoginModalOpen} toggle={this.toggleModal1}>
+                <ModalHeader toggle={this.toggleModal1}>Login</ModalHeader>
+                <ModalBody>
+                <Form onSubmit={this.handleLogin}>
+                    <FormGroup>
+                    <Label htmlFor="username">Email</Label>
+                    <Input type="text" id="username" name="username" 
+                    innerRef = {(input) => this.username=input}/>
+                    </FormGroup>
+                    <FormGroup>
+                    <Label htmlFor="password">Password</Label>
+                    <Input type="password" id="password" name="password"
+                    innerRef = {(input) => this.password=input}/>
+                    </FormGroup>
+                    <FormGroup check>
+                    <Label check>
+                        <Input type="checkbox" name="remember" 
+                        innerRef = {(input) => this.remember=input}/>Remember Me</Label>
+                    </FormGroup>
+                    <FormGroup>
+                    <Button type="submit" value="submit" color="primary">Login</Button>{"    "}
+                    <Button type="button" value="googleButton1" color="danger" onClick={this.googleSignInHandle}>Sign In with Google</Button>
+                    </FormGroup>
+                    <FormGroup>
+                    <Link to='/signup'>Not Registered? Sign Up</Link>
+                     
+                    </FormGroup>
+                </Form>
+                <Link > </Link>
+                </ModalBody>
+            </Modal>
             <div>
-            <Button outline onClick={this.toggleModal}><span className="fa fa-pencil fa-lg"></span>Submit Comment</Button>
+            <Button outline onClick={ auth.currentUser ? this.toggleModal : this.toggleModal1 }><span className="fa fa-pencil fa-lg"></span>Submit Comment</Button>
             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} className="submitCommentModal">
             <ModalHeader toggle={this.toggle}>Submit Comment</ModalHeader>
             <ModalBody>
@@ -107,6 +154,7 @@ class CommentForm extends Component{
             </ModalBody>
             </Modal>
             </div>
+            </React.Fragment>
         );
     }
 }
@@ -120,11 +168,14 @@ class CommentForm extends Component{
         this.state={
             cart: [],
             item: this.props.item,
-            isIncl: false
+            isIncl: false,
+            isModalOpen: false
         }
             this.addToCart = this.addToCart.bind(this);
-           
+           this.toggleModal = this.toggleModal.bind(this)
         }
+        
+        
          
         componentDidMount()
         {   window.scrollTo(0,0);
@@ -170,8 +221,11 @@ class CommentForm extends Component{
            
           })
           .catch(() => console.log('error'));
+ }
 
-         
+   toggleModal()
+   {
+       this.setState({ isModalOpen: !this.state.isModalOpen});
    }
                            
        
@@ -183,7 +237,8 @@ class CommentForm extends Component{
             console.log(newcart);
             if(!auth.currentUser)
            { 
-              window.open('/error');
+            //   window.open('/error');
+            this.toggleModal();
          }     
             else{
                
@@ -199,15 +254,16 @@ class CommentForm extends Component{
 
             }
         
-           
-     }
+         }
 
         removeFromCart(item1)
         {
             console.log('removing');
             
            if(!auth.currentUser)
-           { window.open('/error');
+           {
+                // window.open('/error');
+                this.toggleModal();
                }     
             else{
                 console.log(this.state.cart);
@@ -233,6 +289,38 @@ class CommentForm extends Component{
         render(){
            
         	return(
+                <React.Fragment>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                <ModalBody>
+                <Form onSubmit={this.handleLogin}>
+                    <FormGroup>
+                    <Label htmlFor="username">Email</Label>
+                    <Input type="text" id="username" name="username" 
+                    innerRef = {(input) => this.username=input}/>
+                    </FormGroup>
+                    <FormGroup>
+                    <Label htmlFor="password">Password</Label>
+                    <Input type="password" id="password" name="password"
+                    innerRef = {(input) => this.password=input}/>
+                    </FormGroup>
+                    <FormGroup check>
+                    <Label check>
+                        <Input type="checkbox" name="remember" 
+                        innerRef = {(input) => this.remember=input}/>Remember Me</Label>
+                    </FormGroup>
+                    <FormGroup>
+                    <Button type="submit" value="submit" color="primary">Login</Button>{"    "}
+                    <Button type="button" value="googleButton1" color="danger" onClick={this.googleSignInHandle}>Sign In with Google</Button>
+                    </FormGroup>
+                    <FormGroup>
+                    <Link to='/signup'>Not Registered? Sign Up</Link>
+                     
+                    </FormGroup>
+                </Form>
+                <Link > </Link>
+                </ModalBody>
+            </Modal>
 		     <div className="col-12 col-md-5 m-1">
                  <FadeTransform in
                 transformProps={{
@@ -252,6 +340,7 @@ class CommentForm extends Component{
             <Button type='button' color= {this.state.isIncl ? 'success' : 'danger'} onClick={() => { this.state.isIncl ? this.removeFromCart(this.props.item) : this.addToCart(this.props.item)}}>{this.state.isIncl ? 'REMOVE FROM CART' : 'ADD TO CART' }</Button>
                 </FadeTransform>
               </div>
+              </React.Fragment>
 				);
 	
 }

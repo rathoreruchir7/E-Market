@@ -11,6 +11,7 @@ import Profile from './ProfileComponent';
 import AddToSell from './AddToSell';
 import Cart from './CartComponent';
 import Success from './SuccessComponent';
+import Approval from './Approval';
 import SignUpSuccess from './signUpSuccess';
 import NotFound from './NotFoundComponent';
 import {Switch, Route,Redirect,withRouter} from 'react-router-dom';
@@ -50,6 +51,7 @@ class Main extends Component {
     super(props);
       this.state = {
         user: null,
+        email: null
         
       }
   }
@@ -62,7 +64,9 @@ class Main extends Component {
     auth.onAuthStateChanged( user => {
       if (user) {
        this.setState({user: user}, () => {
-          console.log(auth.currentUser);
+          console.log(auth.currentUser.email);
+          this.setState({email: auth.currentUser.email});
+         
        });
     }
    
@@ -105,10 +109,27 @@ class Main extends Component {
   { 
     
     return (
-        <Profile  />
+        <Profile  isCart={false}/>
       );
   
   }
+
+  const ProfilePageCart = () =>
+  { 
+    
+    return (
+        <Profile  isCart={true}/>
+      );
+  
+  }
+
+
+  const ApprovalPage = () => {
+    return (
+      <Approval email={this.state.email}/>
+    );
+  }
+
   return (
    
     <div>
@@ -127,7 +148,7 @@ class Main extends Component {
               <Route exact path = '/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback}/>} /> 
               <Route exact path = '/aboutus' component  = {AboutUs} />
               <Route exact path = '/sellItem' component  = {AddToSell} />
-              <Route exact path = '/myCart' component  = {Cart} />
+              <Route exact path = '/myCart' component  = {ProfilePageCart} />
              
 
               
@@ -135,6 +156,7 @@ class Main extends Component {
               <Route exact path = '/success' component  = {Success} />
               <Route exact path = '/signUpSuccess' component  = {SignUpSuccess} />
               <Route exact path = '/pageNotFound' component  = {NotFound} />
+              <Route exact path = '/approval' component  = {ApprovalPage} />
               <Redirect to = '/home'/>
               </Switch>
            </div>
