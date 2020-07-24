@@ -124,7 +124,7 @@ this.props.history.push('/home');
 			<Navbar dark expand="md" style={{position: 'sticky', top: '0'  , zIndex: 10}} className='list-unstyled'>
                     <div className="container" >
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto col-6 col-md-1" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='InpireBazarE' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto col-8 col-md-1" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='InpireBazarE' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar >
                             <NavItem  onClick={this.toggleNav}>
