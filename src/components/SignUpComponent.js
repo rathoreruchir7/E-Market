@@ -86,12 +86,8 @@ handleSignUp(event) {
 
       auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res) => {
-        console.log(res);   
-          })
-      .then((res) => console.log('doc written'))
-      .catch(() => console.log('error'));
-       
-      console.log('going to make doc');
+        console.log(res);  
+              console.log('going to make doc');
        console.log(this.state);
 
       firestore.collection('user')
@@ -103,9 +99,18 @@ handleSignUp(event) {
         cart: [],
         profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
       })
-      
+      .then((res) =>  console.log("j"));   //yahan ar pushhistory sign up success kaam nhi kar rha tha
+
+          })
+      .then((res) => {console.log('doc written');  this.props.history.push('/signUpSuccess')})
+      .catch((err) => {   event.preventDefault(); console.log(err.message); alert(err.message);});
+       
+          
+    
+      event.preventDefault();
   
-       this.props.history.push('/signUpSuccess');
+     
+    
   }
 
 handleImageChange(event){
