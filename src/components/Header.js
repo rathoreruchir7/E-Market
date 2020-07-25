@@ -124,7 +124,7 @@ this.props.history.push('/home');
 			<Navbar dark expand="md" style={{position: 'sticky', top: '0'  , zIndex: 10}} className='list-unstyled'>
                     <div className="container" >
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto col-8 col-md-1" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='InpireBazarE' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='InpireBazarE' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar >
                             <NavItem  onClick={this.toggleNav}>
@@ -157,15 +157,18 @@ this.props.history.push('/home');
                               </NavItem>
                             </Nav>
                         </Collapse>
-                        
-                        <NavItem >
+                       
+                        <NavItem>
                                 <NavLink className="nav-link" to={ this.state.isNavOpen ? '' : '/menu'}><span className={ this.state.isNavOpen ? "" : "fa fa-shopping-basket fa-lg"} ></span> {this.state.isNavOpen ? '' : "Shop Now"}</NavLink>
                         </NavItem>
-                        <NavItem >
+                        <NavItem style={{ left: 100, top: 100}} >
                                 <NavLink className="nav-link" to={ this.state.isNavOpen ? '' : '/myCart'}><span className={ this.state.isNavOpen ? "" : "fa fa-shopping-cart fa-lg"} ></span> { this.state.isNavOpen ? '' : "My Cart"}</NavLink>
                         </NavItem>
+                       
+                        
                     </div>
                 </Navbar>
+            
 
 
 			<Jumbotron>
