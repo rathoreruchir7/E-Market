@@ -61,6 +61,28 @@ resetState()
    
 }
 
+nextFunc()
+     {
+       console.log('i am in next func');
+      firestore.collection("user").doc(this.state.email).set({
+        name: this.state.name,
+        username: this.state.username,
+        email: this.state.email,
+        cart: [],
+        profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
+     })
+     .then((res) => {
+         console.log("Document successfully written!");
+         console.log(res);
+     })
+     .catch(function(error) {
+         console.error("Error writing document: ", error);
+     });
+        
+     this.props.history.push("/home");
+          
+     }
+
 googleSignInHandle(){
   
   auth.signInWithRedirect(provider).then(function(result) {
@@ -86,20 +108,18 @@ handleSignUp(event) {
 
       auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res) => {
-<<<<<<< HEAD
-        console.log(res);   
-          })
-      .then((res) => {
-        console.log('doc written')
-        firestore.collection('user')
-=======
         console.log(res);  
               console.log('going to make doc');
        console.log(this.state);
 
+      
+    })
+      .then((res) => {console.log('doc written');  this.props.history.push('/signUpSuccess')})
+      .catch((err) => {   event.preventDefault(); console.log(err.message); alert(err.message);});
+       
+          
       firestore.collection('user')
->>>>>>> 92ab2915c1ec73814e4ad429f7e34b91b13621d0
-      .doc(this.state.email.toString())
+      .doc(this.state.email)
       .set({
         name: this.state.name,
         username: this.state.username,
@@ -107,28 +127,10 @@ handleSignUp(event) {
         cart: [],
         profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
       })
-<<<<<<< HEAD
-      .then((res) => console.log("user created"))
-      .catch((err) => console.log(err));
-      })
-      .catch(() => console.log('error'));
-       
-      console.log('going to make doc');
-       console.log(this.state);
-
-      
-      
-=======
       .then((res) =>  console.log("j"));   //yahan ar pushhistory sign up success kaam nhi kar rha tha
+  
 
-          })
-      .then((res) => {console.log('doc written');  this.props.history.push('/signUpSuccess')})
-      .catch((err) => {   event.preventDefault(); console.log(err.message); alert(err.message);});
-       
-          
-    
       event.preventDefault();
->>>>>>> 92ab2915c1ec73814e4ad429f7e34b91b13621d0
   
      
     
@@ -144,26 +146,7 @@ handleImageChange(event){
      }
 
 
-     nextFunc()
-     {
-       console.log('i am in next func');
-      firestore.collection("user").doc(this.state.username).set({
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        email: this.state.username,
-        cart: []
-     })
-     .then((res) => {
-         console.log("Document successfully written!");
-         console.log(res);
-     })
-     .catch(function(error) {
-         console.error("Error writing document: ", error);
-     });
-        
-     this.props.history.push("/home");
-          
-     }
+     
     render()
     {
         return (
