@@ -80,13 +80,9 @@ class SignUp extends Component{
       .then((res) => {
         console.log(res);   
           })
-      .then((res) => console.log('doc written'))
-      .catch(() => console.log('error'));
-       
-      console.log('going to make doc');
-       console.log(this.state);
-
-      firestore.collection('user')
+      .then((res) => {
+        console.log('doc written')
+        firestore.collection('user')
       .doc(this.state.email.toString())
       .set({
         name: this.state.name,
@@ -95,6 +91,15 @@ class SignUp extends Component{
         cart: [],
         profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
       })
+      .then((res) => console.log("user created"))
+      .catch((err) => console.log(err));
+      })
+      .catch(() => console.log('error'));
+       
+      console.log('going to make doc');
+       console.log(this.state);
+
+      
       
   
        this.props.history.push('/signUpSuccess');
