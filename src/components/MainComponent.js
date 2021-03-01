@@ -11,6 +11,7 @@ import Profile from './ProfileComponent';
 import AddToSell from './AddToSell';
 import Cart from './CartComponent';
 import Success from './SuccessComponent';
+import Approval from './Approval';
 import SignUpSuccess from './signUpSuccess';
 import NotFound from './NotFoundComponent';
 import {Switch, Route,Redirect,withRouter} from 'react-router-dom';
@@ -21,6 +22,8 @@ import { postComment,postFeedback,fetchItems,fetchComments,fetchUser } from '../
 import { actions } from 'react-redux-form';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import {auth} from '../firebase/firebase';
+
+require('dotenv').config();
 const mapDispatchToProps = dispatch => ({
   
   postComment: (itemId, rating, comment) => dispatch(postComment(itemId, rating, comment)),
@@ -47,18 +50,23 @@ class Main extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        user: null
+        user: null,
+        email: null
+        
       }
   }
  
   componentDidMount() {
+    window.scrollTo(0,0);
     this.props.fetchItems();
     this.props.fetchComments();
-   
+    console.log(process.env);
     auth.onAuthStateChanged( user => {
       if (user) {
        this.setState({user: user}, () => {
-   
+          console.log(auth.currentUser.email);
+          this.setState({email: auth.currentUser.email});
+         
        });
     }
    
@@ -101,14 +109,31 @@ class Main extends Component {
   { 
     
     return (
-        <Profile  />
+        <Profile  isCart={false}/>
       );
   
   }
+
+  const ProfilePageCart = () =>
+  { 
+    
+    return (
+        <Profile  isCart={true}/>
+      );
+  
+  }
+
+
+  const ApprovalPage = () => {
+    return (
+      <Approval email={this.state.email}/>
+    );
+  }
+
   return (
    
     <div>
-    <Header />
+    <Header  />
       <TransitionGroup>    
         <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
             <div>
@@ -123,13 +148,15 @@ class Main extends Component {
               <Route exact path = '/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback}/>} /> 
               <Route exact path = '/aboutus' component  = {AboutUs} />
               <Route exact path = '/sellItem' component  = {AddToSell} />
-              <Route exact path = '/myCart' component  = {Cart} />
+              <Route exact path = '/myCart' component  = {ProfilePageCart} />
+             
 
               
               <Route exact path = '/error' component  = {Error} />
               <Route exact path = '/success' component  = {Success} />
               <Route exact path = '/signUpSuccess' component  = {SignUpSuccess} />
               <Route exact path = '/pageNotFound' component  = {NotFound} />
+              <Route exact path = '/approval' component  = {ApprovalPage} />
               <Redirect to = '/home'/>
               </Switch>
            </div>

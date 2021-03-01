@@ -30,6 +30,7 @@ address{
 
 .navbar-dark {
     background-color: #3238a8;
+    position: 'sticky';
 }
 
 .rating
@@ -69,3 +70,11 @@ address{
     transform: translateX(100%);
     transition: all 300ms ease-out;
 }
+
+.menu:hover{
+  opacity: 0.2
+}
+
+
+
+

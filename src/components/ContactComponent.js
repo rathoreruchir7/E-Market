@@ -53,7 +53,7 @@ class Contact extends Component {
                             United States of America<br />
                             <i className="fa fa-phone"></i>: +98 1234 5678<br />
                             <i className="fa fa-fax"></i>: +980 8765 4321<br />
-                            <i className="fa fa-envelope"></i>: <a href="mailto:emarket@shop.net">emarket@shop.net</a>
+                            <i className="fa fa-envelope"></i>: <a href="mailto:inspirebazarE@shop.net">inspirebazarE@shop.net</a>
                             </address>
                     </div>
                     <div className="col-12 col-sm-6 offset-sm-1">
@@ -63,7 +63,7 @@ class Contact extends Component {
                         <div className="btn-group" role="group">
                             <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
                             <a role="button" className="btn btn-info"><i className="fa fa-skype"></i> Skype</a>
-                            <a role="button" className="btn btn-success" href="mailto:emarket@shop.net"><i className="fa fa-envelope-o"></i> Email</a>
+                            <a role="button" className="btn btn-success" href="mailto:inspireBazarE@shop.net"><i className="fa fa-envelope-o"></i> Email</a>
                         </div>
                     </div>
                 </div>

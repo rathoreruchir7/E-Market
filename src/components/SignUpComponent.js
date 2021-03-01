@@ -22,10 +22,10 @@ class SignUp extends Component{
         this.handleSignUp = this.handleSignUp.bind(this);
         this.nextFunc = this.nextFunc.bind(this);
         this.resetState = this.resetState.bind(this);
-        this. googleSignInHandle = this.googleSignInHandle.bind(this);
+        this.googleSignInHandle = this.googleSignInHandle.bind(this);
     }
  
-    handleChange(event) {
+handleChange(event) {
       const target = event.target;
       const value = target.value;
       const name = target.name;
@@ -35,54 +35,70 @@ class SignUp extends Component{
       });
       }
 
-      resetState()
+resetState()
       {
           this.setState({ username: '', password: '', firstname: '', lastname: ''});
       }
 
-  componentDidMount() {
-    console.log(this.props.user);
-     }
+ componentDidMount() {
+      if(auth.currentUser)
+      {
+        firestore.collection('user')
+        .doc(auth.currentUser.email.toString())
+        .set({
+          name: auth.currentUser.displayName,
+          username: auth.currentUser.email,
+          email: auth.currentUser.email,
+          cart: [],
+          profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
+        });
+        this.props.history.push('/home');
+      }
+      else
+      {
+        console.log('no current user');
+      }
+   
+}
 
-     googleSignInHandle(){
-        
-      auth.signInWithPopup(provider).then(function(result) {
-     var token = result.credential.accessToken;
-     var user = result.user;
-     console.log(result);
-     firestore.collection('user')
-     .doc(auth.currentUser.email.toString())
-     .set({
-       name: auth.currentUser.displayName,
-       username: auth.currentUser.email,
-       email: auth.currentUser.email,
-       cart: [],
-       profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
-     })
-    
-    }).catch(function(error) {
-     
-     var errorCode = error.code;
-     var errorMessage = error.message;
-     var email = error.email;
-     var credential = error.credential;
-     // ...
-    });
+googleSignInHandle(){
   
-    this.props.history.push('/signUpSucess');
-    }
-  handleSignUp(event) {
+  auth.signInWithRedirect(provider).then(function(result) {
+   if (result.credential) {
+     var token = result.credential.accessToken;
+     console.log(token);
+   }
+   var user = result.user;
+   console.log(user);
+   console.log('after user');
+ }).catch(function(error) {
+   var errorCode = error.code;
+   var errorMessage = error.message;
+    var email = error.email;
+    var credential = error.credential;
+    console.log(errorMessage);
+ });
+}
+handleSignUp(event) {
 
       console.log('i am in sign up');
       console.log(this.state.username); console.log(this.state.password);
 
       auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res) => {
+<<<<<<< HEAD
         console.log(res);   
           })
       .then((res) => {
         console.log('doc written')
         firestore.collection('user')
+=======
+        console.log(res);  
+              console.log('going to make doc');
+       console.log(this.state);
+
+      firestore.collection('user')
+>>>>>>> 92ab2915c1ec73814e4ad429f7e34b91b13621d0
       .doc(this.state.email.toString())
       .set({
         name: this.state.name,
@@ -91,6 +107,7 @@ class SignUp extends Component{
         cart: [],
         profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2Fdefault-user-image.png?alt=media&token=667b0dbf-bee8-4d84-927c-12d03a48a0b0'
       })
+<<<<<<< HEAD
       .then((res) => console.log("user created"))
       .catch((err) => console.log(err));
       })
@@ -101,11 +118,23 @@ class SignUp extends Component{
 
       
       
+=======
+      .then((res) =>  console.log("j"));   //yahan ar pushhistory sign up success kaam nhi kar rha tha
+
+          })
+      .then((res) => {console.log('doc written');  this.props.history.push('/signUpSuccess')})
+      .catch((err) => {   event.preventDefault(); console.log(err.message); alert(err.message);});
+       
+          
+    
+      event.preventDefault();
+>>>>>>> 92ab2915c1ec73814e4ad429f7e34b91b13621d0
   
-       this.props.history.push('/signUpSuccess');
+     
+    
   }
 
-     handleImageChange(event){
+handleImageChange(event){
      
       if (event.target.files[0]) {
         const image = event.target.files[0];
@@ -141,7 +170,7 @@ class SignUp extends Component{
           <Form onSubmit={this.handleSignUp}>
 
           <FormGroup className='col-12 col-md-4'>
-            <Label htmlFor="username">Name</Label>
+            <Label htmlFor="name">Name</Label>
             <Input type="text" id="name" name="name" 
              placeholder='John Smith'
              value={this.state.name}
@@ -157,7 +186,7 @@ class SignUp extends Component{
           </FormGroup>
 
           <FormGroup className='col-12 col-md-4'>
-            <Label htmlFor="lastname">Email</Label>
+            <Label htmlFor="email">Email</Label>
             <Input type="email" id="email" name="email" 
              placeholder='johnSmith@gmail.com'
              value={this.state.email}

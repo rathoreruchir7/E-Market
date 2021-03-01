@@ -13,7 +13,9 @@ class Header extends Component{
           isNavOpen: false,
           isModalOpen: false,
           isModalOpen1: false,
-          validCredential: true
+          validCredential: true,
+          user: '',
+          hidden: true
           
         };
         this.toggleNav = this.toggleNav.bind(this);
@@ -27,7 +29,7 @@ class Header extends Component{
    
 	toggleNav()
 	{
-		this.setState({isNavOpen : !this.state.isNavOpen});
+		this.setState({isNavOpen : !this.state.isNavOpen},() => console.log(this.state.isNavOpen));
   }
   
   toggleModal() {
@@ -41,7 +43,7 @@ class Header extends Component{
       isModalOpen1: !this.state.isModalOpen1
     });
   }
-
+ 
   handleLogin(event)
   {
     
@@ -56,6 +58,8 @@ class Header extends Component{
     console.log(typeof(password));
   
     auth.signInWithEmailAndPassword(email, password)
+    .then((res) =>{ console.log(res);
+       this.props.history.push('/home'); })
     .catch(function(error) {
       console.log('cant log in');
       window.open('/error');
@@ -65,29 +69,40 @@ class Header extends Component{
     });
     console.log(auth.currentUser);
     event.preventDefault();
-    // this.props.history.push('/home');
+    
  }
-
+ 
+ componentWillMount() {
+   console.log('ruchir');
+    setTimeout(() => {
+      this.setState({hidden: false})
+    }, 5000)
+ }
  googleSignInHandle(){
         
-  auth.signInWithPopup(provider).then(function(result) {
- var token = result.credential.accessToken;
- var user = result.user;
- 
- this.props.history.push('/home');
-}).catch(function(error) {
- 
- var errorCode = error.code;
- var errorMessage = error.message;
- var email = error.email;
- var credential = error.credential;
- window.open('/error');
- // ...
-});
+  auth.signInWithRedirect(provider).then(function(result) {
+    if (result.credential) {
+      var token = result.credential.accessToken;
+      console.log(token);
+    }
+    var user = result.user;
+    console.log(user);
+    console.log('after user');
+    
+   
+  }).catch(function(error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+     var email = error.email;
+     var credential = error.credential;
+     console.log(errorMessage);
+     window.open('/error');
+  });
 this.setState({
   isModalOpen: !this.state.isModalOpen
 });
 this.props.history.push('/home');
+
 }
 
   handleLogout()
@@ -101,55 +116,66 @@ this.props.history.push('/home');
   }
 
 	render()
-	{
+	{ 
+    if(!this.state.hidden) {
 		return(
 			
 		  <React.Fragment>	
-			<Navbar dark expand="md">
-                    <div className="container">
+			<Navbar dark expand="md" style={{position: 'sticky', top: '0'  , zIndex: 10}} className='list-unstyled'>
+                    <div className="container" >
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="30" width="41" alt='E-Market' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.jpg' height="30" width="41"  /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
-                            <Nav navbar>
-                            <NavItem>
+                            <Nav navbar >
+                            <NavItem  onClick={this.toggleNav}>
                                 <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg"></span> About Us</NavLink>
+                            <NavItem  onClick={this.toggleNav}>
+                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg" ></span> About Us</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
+                            <NavItem  onClick={this.toggleNav}>
+                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg" ></span> Menu</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
+                            <NavItem  onClick={this.toggleNav}>
+                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg" ></span> Contact Us</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem  onClick={this.toggleNav}>
                                 <NavLink className="nav-link" to= { auth.currentUser ? '/sellItem' : ''}><span className={ auth.currentUser ? "fa fa-plus fa-lg" : ''}></span>{ auth.currentUser ? 'Add To Sell' : ''}</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem  onClick={this.toggleNav}>
                                 <NavLink className="nav-link" to= { auth.currentUser ? '/profile' : ''}><span className={ auth.currentUser ? "fa fa-user fa-lg" : ''}></span>{ auth.currentUser ? 'Profile' : ''}</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem  onClick={this.toggleNav}>
                                 <NavLink className="nav-link" to= { auth.currentUser ? '' : '/signup'}><span className={ auth.currentUser ? "" : 'fa fa-sign-in fa-lg'}></span>{ auth.currentUser ? '' : 'Sign Up'}</NavLink>
                             </NavItem>
                             </Nav>
                             <Nav className="" navbar>
-                              <NavItem>
+                              <NavItem  onClick={this.toggleNav}>
                                 <Button outline onClick={auth.currentUser? this.toggleModal1 :this.toggleModal}>
                                     <span className={ auth.currentUser? "fa fa-sign-out fa-lg" : "fa fa-sign-in  fa-lg"}></span>{auth.currentUser ? 'Logut' : 'Login'}
                                 </Button>
                               </NavItem>
                             </Nav>
                         </Collapse>
+                       
+                        <NavItem>
+                                <NavLink className="nav-link" to={ this.state.isNavOpen ? '' : '/menu'}><span className={ this.state.isNavOpen ? "" : "fa fa-shopping-basket fa-lg"} ></span> {this.state.isNavOpen ? '' : "Shop Now"}</NavLink>
+                        </NavItem>
+                        <NavItem style={{ left: 100, top: 100}} >
+                                <NavLink className="nav-link" to={ this.state.isNavOpen ? '' : '/myCart'}><span className={ this.state.isNavOpen ? "" : "fa fa-shopping-cart fa-lg"} ></span> { this.state.isNavOpen ? '' : "My Cart"}</NavLink>
+                        </NavItem>
+                       
+                        
                     </div>
                 </Navbar>
+            
 
 
 			<Jumbotron>
 			  <div className="container">
 			    <div className="row row-header">
 			      <div className="col-12 col-sm-6">
-			      	<h1>E-Market</h1>
+			      	<h1>Inspire Bazar-E</h1>
                        <p>Born to shop. Forced to work.</p>
 			      </div>
 			    </div>
@@ -162,7 +188,7 @@ this.props.history.push('/home');
         <ModalBody>
           <Form onSubmit={this.handleLogin}>
             <FormGroup>
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="username">Email</Label>
               <Input type="text" id="username" name="username" 
                innerRef = {(input) => this.username=input}/>
             </FormGroup>
@@ -199,7 +225,18 @@ this.props.history.push('/home');
 			</React.Fragment>
 			
 			);
-	}
+    }
+    else
+    {
+      return(
+         <div className="col-12" style={{justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
+            <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
+            <p>Loading . . .</p>
+        </div>
+      );
+    }
+  
+  }
 }
 
 export default withRouter(Header);

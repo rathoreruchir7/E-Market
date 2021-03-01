@@ -10,7 +10,7 @@ class SignUpSuccess extends Component{
     {
         return(
             <div>
-            <Image src = 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2FWeb%201920%20%E2%80%93%201.png?alt=media&token=e816f3d0-0835-413e-8ea4-ae6fcfbc2578' fluid />
+            <Image src = 'https://firebasestorage.googleapis.com/v0/b/newproject-f4730.appspot.com/o/images%2FsignupSuccess.png?alt=media&token=b6269128-27f0-45d3-b089-561b8a155a0b' fluid />
           
             </div>
         );

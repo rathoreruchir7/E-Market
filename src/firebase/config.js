@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 export const firebaseConfig = {
-    apiKey: "AIzaSyCo-PnUeC15wnhdJbWh7BEpkg-ogUAUlaw",
-    authDomain: "newproject-f4730.firebaseapp.com",
-    databaseURL: "https://newproject-f4730.firebaseio.com",
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
     projectId: "newproject-f4730",
-    storageBucket: "newproject-f4730.appspot.com",
-    messagingSenderId: "783735253896",
-    appId: "1:783735253896:web:e6b5d6c5f078368637e83d",
-    measurementId: "G-68ZD7KZTQH"
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
   };
